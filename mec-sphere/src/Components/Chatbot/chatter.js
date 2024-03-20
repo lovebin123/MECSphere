@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.run = void 0;
-// chatter.js
 var pdf_1 = require("langchain/document_loaders/fs/pdf");
 var text_splitter_1 = require("langchain/text_splitter");
 var openai_1 = require("@langchain/openai");

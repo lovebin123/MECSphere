@@ -15,6 +15,7 @@ import {
 import { useDisclosure } from '@chakra-ui/react';
 import meclogo from '../Images/mec_logo.jpg';
 import { Text } from '@chakra-ui/react'
+
 function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [query, setQuery] = useState('');
@@ -28,10 +29,29 @@ function Home() {
     setQuery('');
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     // Update the message state with the value of query
     setMessage(query);
-    console.log(query)
+    
+    try {
+      // Send the query to the Express server
+      const response = await fetch('/query', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query }),
+      });
+      
+      if (response.ok) {
+        console.log('Query sent successfully');
+      } else {
+        console.error('Failed to send query');
+      }
+    } catch (error) {
+      console.error('Error sending query:', error);
+    }
+    
     // Optionally, clear the input field after sending the message
     setQuery('');
   };

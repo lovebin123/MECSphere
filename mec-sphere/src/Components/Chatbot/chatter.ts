@@ -1,4 +1,3 @@
-// chatter.js
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { OpenAIEmbeddings } from "@langchain/openai";

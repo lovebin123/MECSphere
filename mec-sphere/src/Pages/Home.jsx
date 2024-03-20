@@ -11,15 +11,16 @@ import {
   Button,
   Image,
   Input,
+  Text, // Import Text component
 } from '@chakra-ui/react';
 import { useDisclosure } from '@chakra-ui/react';
 import meclogo from '../Images/mec_logo.jpg';
-import { Text } from '@chakra-ui/react'
 
 function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [query, setQuery] = useState('');
   const [message, setMessage] = useState('');
+  const [response, setResponse] = useState('');
 
   const handleMessageChange = (event) => {
     setQuery(event.target.value);
@@ -42,9 +43,14 @@ function Home() {
         },
         body: JSON.stringify({ query }),
       });
-      
+
       if (response.ok) {
-        console.log('Query sent successfully');
+        // Get the response data as plain text
+        const data = await response.text();
+        console.log('Response:', data); // Print the response
+
+        // Update the response state with the received data
+        setResponse(data);
       } else {
         console.error('Failed to send query');
       }
@@ -78,7 +84,15 @@ function Home() {
           <DrawerCloseButton />
           <DrawerHeader textAlign={'center'}>PLACEMENT BOT</DrawerHeader>
           <DrawerBody>
-            <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'teal'} ml={60} h={45} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{message}</Text>
+            {/* Render the query if it exists */}
+            {message && (
+              <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'teal'} ml={60} h={45} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{message}</Text>
+            )}
+
+            {/* Render the response if it exists */}
+            {response && (
+              <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'pink'} mr={60} h={60} mt={30} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{response}</Text>
+            )}
           </DrawerBody>
           <DrawerFooter>
             <Input placeholder="Type your message here" value={query} onChange={handleMessageChange} />

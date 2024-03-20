@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.run = void 0;
+// chatter.js
 var pdf_1 = require("langchain/document_loaders/fs/pdf");
 var text_splitter_1 = require("langchain/text_splitter");
 var openai_1 = require("@langchain/openai");
@@ -83,10 +84,10 @@ function run(query) {
                     if (typeof answer === 'object' && 'text' in answer) {
                         text = answer.text;
                         cleanedText = text.replace('text: ', '');
-                        console.log(cleanedText);
+                        return [2 /*return*/, cleanedText]; // Return the cleaned text
                     }
                     else {
-                        console.log(answer);
+                        return [2 /*return*/, answer]; // Return the answer
                     }
                     return [3 /*break*/, 6];
                 case 5:

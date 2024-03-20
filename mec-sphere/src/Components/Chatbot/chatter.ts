@@ -1,3 +1,4 @@
+// chatter.js
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { OpenAIEmbeddings } from "@langchain/openai";
@@ -39,9 +40,9 @@ export async function run(query) {
     if (typeof answer === 'object' && 'text' in answer) {
       const text = answer.text;
       const cleanedText = text.replace('text: ', '');
-      console.log(cleanedText);
+      return cleanedText; // Return the cleaned text
     } else {
-      console.log(answer);
+      return answer; // Return the answer
     }
     
   } catch (error) {

@@ -15,24 +15,27 @@ import {
 } from '@chakra-ui/react';
 import { useDisclosure } from '@chakra-ui/react';
 import meclogo from '../Images/mec_logo.jpg';
+import './Home.css'
+// Loader component
+const Loader = () => (
+  <div className="loader"></div>
+);
 
 function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [query, setQuery] = useState('');
   const [message, setMessage] = useState('');
   const [response, setResponse] = useState('');
+  const [loading, setLoading] = useState(false); // State to track loading status
 
   const handleMessageChange = (event) => {
     setQuery(event.target.value);
   };
 
-  const handleClearInput = () => {
-    setQuery('');
-  };
-
   const handleSendMessage = async () => {
     // Update the message state with the value of query
     setMessage(query);
+    setLoading(true); // Set loading state to true when sending message
     
     try {
       // Send the query to the Express server
@@ -56,9 +59,11 @@ function Home() {
       }
     } catch (error) {
       console.error('Error sending query:', error);
+    } finally {
+      setLoading(false); // Set loading state to false after receiving response
     }
-    
-    // Optionally, clear the input field after sending the message
+
+    // Clear the input field after sending the message
     setQuery('');
   };
 
@@ -76,7 +81,7 @@ function Home() {
         onClick={onOpen}
         color={'blue'}
       >
-        <Image src={meclogo} boxSize={'5'} borderRadius={'full'} />
+        <Image src={meclogo} boxSize={'6'}  borderRadius={'full'} />
       </Button>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} size={'md'}>
         <DrawerOverlay />
@@ -88,10 +93,14 @@ function Home() {
             {message && (
               <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'teal'} ml={60} h={45} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{message}</Text>
             )}
-
-            {/* Render the response if it exists */}
-            {response && (
-              <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'pink'} mr={60} h={60} mt={30} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{response}</Text>
+          
+            {/* Render the response or loader based on loading status */}
+            {loading ? (
+              <Loader />
+            ) : (
+              response && (
+                <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'pink'} mr={60} h={60} mt={30} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{response}</Text>
+              )
             )}
           </DrawerBody>
           <DrawerFooter>

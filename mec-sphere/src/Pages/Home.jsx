@@ -24,8 +24,8 @@ const Loader = () => (
 function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [query, setQuery] = useState('');
-  const [message, setMessage] = useState('');
-  const [response, setResponse] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false); // State to track loading status
 
   const handleMessageChange = (event) => {
@@ -33,8 +33,8 @@ function Home() {
   };
 
   const handleSendMessage = async () => {
-    // Update the message state with the value of query
-    setMessage(query);
+    // Add the current query to messages array
+    setMessages([...messages, query]);
     setLoading(true); // Set loading state to true when sending message
     
     try {
@@ -52,8 +52,8 @@ function Home() {
         const data = await response.text();
         console.log('Response:', data); // Print the response
 
-        // Update the response state with the received data
-        setResponse(data);
+        // Add the received response to responses array
+        setResponses([...responses, data]);
       } else {
         console.error('Failed to send query');
       }
@@ -89,19 +89,16 @@ function Home() {
           <DrawerCloseButton />
           <DrawerHeader textAlign={'center'}>PLACEMENT BOT</DrawerHeader>
           <DrawerBody>
-            {/* Render the query if it exists */}
-            {message && (
-              <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'teal'} ml={60} h={45} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{message}</Text>
-            )}
-          
-            {/* Render the response or loader based on loading status */}
-            {loading ? (
-              <Loader />
-            ) : (
-              response && (
-                <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'pink'} mr={60} h={60} mt={30} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{response}</Text>
-              )
-            )}
+            {/* Render the messages and their corresponding responses */}
+            {messages.map((message, index) => (
+              <React.Fragment key={`message-response-${index}`}>
+                <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'teal'} ml={60} h={45} mb={10} mt={10} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{message}</Text>
+                {responses[index] && (
+                  <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'pink'} mr={60} h={60} mb={30} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{responses[index]}</Text>
+                )}
+              </React.Fragment>
+            ))}
+            {loading && <Loader />} {/* Display loader if loading */}
           </DrawerBody>
           <DrawerFooter>
             <Input placeholder="Type your message here" value={query} onChange={handleMessageChange} />

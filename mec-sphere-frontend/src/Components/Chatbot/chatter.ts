@@ -8,7 +8,7 @@ import { OpenAI } from "@langchain/openai";
 
 export async function run(query) {
   try {
-    const loader = new PDFLoader("C:\\Users\\loveb\\Documents\\react\\mec\\mec-sphere\\src\\Components\\Chatbot\\docs1\\MECChat1.pdf");
+    const loader = new PDFLoader("./docs1/MECChat1.pdf");
     const docs = await loader.load();
 
     const splitter = new RecursiveCharacterTextSplitter({

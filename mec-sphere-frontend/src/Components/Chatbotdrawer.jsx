@@ -50,7 +50,7 @@ const Chatbotdrawer = ({ isOpen, onClose }) => {
     return ( 
         <Drawer isOpen={isOpen} placement="right" onClose={onClose} size={'md'}>
         <DrawerOverlay />
-        <DrawerContent zIndex={4}>
+        <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader textAlign={'center'}>PLACEMENT BOT</DrawerHeader>
           <DrawerBody>
@@ -59,7 +59,7 @@ const Chatbotdrawer = ({ isOpen, onClose }) => {
               <React.Fragment key={`message-response-${index}`}>
                 <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'teal'} ml={60} h={45} mb={10} mt={10} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{message}</Text>
                 {responses[index] && (
-                  <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'pink'} mr={60} h={60} mb={30} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{responses[index]}</Text>
+                  <Text  className="typed" textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'pink'} mr={60}  mb={30} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15} >{responses[index]}</Text>
                 )}
               </React.Fragment>
             ))}

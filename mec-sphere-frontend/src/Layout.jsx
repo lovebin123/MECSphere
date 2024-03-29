@@ -16,7 +16,7 @@ const Layout = () => {
                 right="20px"
                 w={50}
                 h={50}
-                zIndex={10000}
+                zIndex={3}
                 borderRadius="50%"
                 cursor="pointer"
                 onClick={() => setChatbotOpen(!isChatbotOpen)}

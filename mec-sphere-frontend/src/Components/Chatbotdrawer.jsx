@@ -50,7 +50,7 @@ const Chatbotdrawer = ({ isOpen, onClose }) => {
     return ( 
         <Drawer isOpen={isOpen} placement="right" onClose={onClose} size={'md'}>
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent zIndex={4}>
           <DrawerCloseButton />
           <DrawerHeader textAlign={'center'}>PLACEMENT BOT</DrawerHeader>
           <DrawerBody>

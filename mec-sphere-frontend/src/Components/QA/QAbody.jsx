@@ -14,7 +14,7 @@ function QAbody() {
   };
 
   return (
-    <Flex alignItems="center" justifyContent="center" mt={12}>
+    <Flex justifyContent='flex-start' alignContent={'space-between'}  mt={12}>
       <Flex gap={10}>
         {[0, 1].map((index) => ( // Loop through an array to generate cards
           <Card key={index} maxW="sm" maxH="lg">

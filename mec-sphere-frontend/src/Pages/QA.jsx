@@ -9,6 +9,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react'
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 
 import QAbody from '../Components/QA/QAbody';
 
@@ -47,8 +48,7 @@ function QA() {
               width={'30rem'}
               color={'gray'}
               cursor={'pointer'}
-              value={question}
-              onChange={handleInputChange}
+              
             />
           </HStack>
           <Button onClick={handleSubmit}>
@@ -59,7 +59,21 @@ function QA() {
           </Button>
         </VStack>
       </Container>
-      <QAbody/>
+      <Tabs>
+  <TabList>
+    <Tab>Answers</Tab>
+    <Tab>Question</Tab>
+   
+  </TabList>
+
+  <TabPanels>
+    <TabPanel>
+    <QAbody/>
+    </TabPanel>
+    
+  </TabPanels>
+</Tabs>
+     
       <Modal closeOnOverlayClick={false} size={'md'} isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>

@@ -1,0 +1,11 @@
+.btn svg:hover{
+    cursor: pointer;
+}
+.btn{
+    background:white;
+    border: none;
+    font-size: 88px;
+    outline: none;
+    color: gray;
+
+}

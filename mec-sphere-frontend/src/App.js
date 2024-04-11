@@ -6,10 +6,12 @@ import Placements from './Pages/Placements';
 import Alumniconnect from './Pages/Alumniconnect';
 import QA from './Pages/QA';
 import Profile from './Pages/Profile';
+import { ChakraProvider } from '@chakra-ui/react';
 
 function App() {
   return (
-      <Routes>
+      <ChakraProvider>
+        <Routes>
         <Route path="/dash/*" element={<Layout/>}>
           <Route index element={<Home/>} />
           <Route path="placements" element={<Placements/>} />
@@ -18,6 +20,7 @@ function App() {
           <Route path='profile' element={<Profile/>} />
         </Route>
       </Routes>
+      </ChakraProvider>
   );
 }
 

@@ -51,7 +51,7 @@ function run(query) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 5, , 6]);
-                    loader = new pdf_1.PDFLoader("./docs1/MECChat1.pdf");
+                    loader = new pdf_1.PDFLoader("C:\\Users\\loveb\\Documents\\MECSphere\\mec-sphere-frontend\\src\\Components\\Chatbot\\docs1\\MECChat1.pdf");
                     return [4 /*yield*/, loader.load()];
                 case 1:
                     docs = _a.sent();

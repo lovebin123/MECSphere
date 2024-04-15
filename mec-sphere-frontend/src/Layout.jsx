@@ -28,7 +28,7 @@ const Layout = () => {
                     bgSize={35}
                     
                     bgPos={'center'}
-                    bgColor={'lightblue'}
+                    bgColor={'#34deec'}
                     _hover={{
                         bgSize: 30
                     }}

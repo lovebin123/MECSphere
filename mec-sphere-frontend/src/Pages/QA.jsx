@@ -12,6 +12,7 @@ import {
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 
 import QAbody from '../Components/QA/QAbody';
+import QAquestions from '../Components/QA/QAquestions';
 
 function QA() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -30,9 +31,9 @@ function QA() {
     <Flex  direction={'column'} h="100vh" w={'80vw'} gap={10}>
       <Container
         mt={10}
-        color={'gray'}
-        border={'solid'}
+       boxShadow={'sm'}
         borderRadius={12}
+        
         h={'120px'}
         display={'flex'}
         alignItems={'center'}
@@ -40,24 +41,26 @@ function QA() {
         onClick={onOpen}
         cursor={'pointer'}
       >
-        <VStack alignItems={'center'} justifyContent={'center'}>
-          <HStack alignItems={'center'} justifyContent={'center'}>
-            <Image src='https://img.icons8.com/color/48/circled-user-male-skin-type-3--v1.png' w={'45px'} h={'45px'} />
+        <Flex gap={1}>
+        <Image src='https://img.icons8.com/color/48/circled-user-male-skin-type-3--v1.png' w={'45px'} h={'45px'} mt={'-2'} />
+
+          <Flex direction={'column'} alignItems={'flex-start'} gap={4}  >
             <Input
               h={8}
-              width={'30rem'}
+              width={'28rem'}
               color={'gray'}
               cursor={'pointer'}
               
             />
-          </HStack>
-          <Button onClick={handleSubmit}>
-            <Flex alignItems={'center'}>
+              <Button onClick={handleSubmit} bgColor={'#5db1fd'}   >
+            <Flex   >
               <Image src='https://img.icons8.com/material-outlined/96/ask-question.png' w={6} />
               <Text>Ask</Text>
             </Flex>
           </Button>
-        </VStack>
+          </Flex>
+        
+        </Flex>
       </Container>
       <Tabs>
   <TabList>
@@ -70,7 +73,9 @@ function QA() {
     <TabPanel>
     <QAbody/>
     </TabPanel>
-    
+    <TabPanel>
+   <QAquestions/>
+    </TabPanel>
   </TabPanels>
 </Tabs>
      

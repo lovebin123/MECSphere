@@ -3,12 +3,14 @@ import { Center, Divider, Textarea } from '@chakra-ui/react';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from '@chakra-ui/react';
 import { Button, Flex, Text, useDisclosure, useToast } from '@chakra-ui/react';
 import QAtable from './QAtable';
+import axios from 'axios';
 
 function QAquestions() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [textValue, setTextValue] = useState(""); // State variable to store textarea content
     const [questions, setQuestions] = useState([]); // State variable to store questions
     const [currentQuestion, setCurrentQuestion] = useState(""); // State variable to store the current question
+    const [qidd, setQid] = useState(""); // State variable to store the question id
     const toast = useToast(); // To use the toast
 
     useEffect(() => {
@@ -27,6 +29,7 @@ function QAquestions() {
 
     const handleTextareaChange = (event) => {
         setTextValue(event.target.value); // Update the state variable with textarea content
+        
     };
 
     const handleOpenModal = (question) => {
@@ -36,6 +39,15 @@ function QAquestions() {
 
     const handlePost = () => {
         // Your post logic
+        const data = {
+            user: 'sam',
+            qid: qidd,
+            ans:textValue
+        }
+        axios.post('http://localhost:4000/answers/add', data).then((response) => {
+            alert('Answer posted successfully');
+        })
+        console.log(textValue, "id = ", qidd);
     };
 
     return (
@@ -51,7 +63,7 @@ function QAquestions() {
                             {question.description}
                         </Text>
                         <Flex justifyContent={'center'} direction={'row'} alignItems={'center'} gap={10}>
-                            <Button onClick={() => handleOpenModal(question.text)} bgColor='#5db1fd'>
+                            <Button onClick={() => {handleOpenModal(question.text); setQid(question._id)}} bgColor='#5db1fd'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <g stroke-width="1.5" fill="none" fill-rule="evenodd">
                                         <path d="M18.571 5.429h0a2 2 0 0 1 0 2.828l-9.9 9.9-4.24 1.416 1.412-4.245 9.9-9.9h0a2 2 0 0 1 2.828 0Z" class="icon_svg-stroke" stroke="#666" stroke-linecap="round" stroke-linejoin="round"></path>

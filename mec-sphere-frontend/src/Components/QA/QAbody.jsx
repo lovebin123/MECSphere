@@ -29,6 +29,32 @@ function QAbody() {
       });
   }, []); // Run this effect only once when the component mounts
 
+  const timeAgo = (date) => {
+    const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+
+    let interval = Math.floor(seconds / 31536000);
+    if (interval >= 1) {
+      return interval + " year" + (interval === 1 ? "" : "s") + " ago";
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval >= 1) {
+      return interval + " month" + (interval === 1 ? "" : "s") + " ago";
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval >= 1) {
+      return interval + " day" + (interval === 1 ? "" : "s") + " ago";
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval >= 1) {
+      return interval + " hour" + (interval === 1 ? "" : "s") + " ago";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval >= 1) {
+      return interval + " minute" + (interval === 1 ? "" : "s") + " ago";
+    }
+    return Math.floor(seconds) + " second" + (seconds === 1 ? "" : "s") + " ago";
+  };
+
   return (
     <Flex justifyContent="flex-start" alignContent={"space-between"} mt={12}>
       <Flex gap={10}>
@@ -59,7 +85,7 @@ function QAbody() {
                   }
                 />
                 <Flex direction="column" gap={5}>
-                  <Text fontSize={10}>{answer.createdAt}</Text>{" "}
+                <Text fontSize={10}>{timeAgo(answer.createdAt)}</Text> {/* Display time ago */}
                   {/* Assuming answer has a createdAt property */}
                   <Text
                     fontSize={"large"}

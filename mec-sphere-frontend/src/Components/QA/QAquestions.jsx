@@ -45,9 +45,33 @@ function QAquestions() {
             ans:textValue
         }
         axios.post('http://localhost:4000/answers/add', data).then((response) => {
-            alert('Answer posted successfully');
-        })
-        console.log(textValue, "id = ", qidd);
+            // Update questions state after posting the answer
+            setQuestions([{
+                _id: response.data._id,
+                description: currentQuestion,
+                time: 'just now', // Assuming time is added as 'just now' for newly posted answers
+                user: 'sam' // Assuming the user is 'sam' for newly posted answers
+            }, ...questions]);
+            // Reset textarea value and close the modal
+            setTextValue("");
+            onClose();
+            toast({
+                title: "Success",
+                description: "Answer posted successfully",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+            });
+        }).catch(error => {
+            console.error('Error posting answer:', error);
+            toast({
+                title: "Error",
+                description: "Failed to post answer",
+                status: "error",
+                duration: 3000,
+                isClosable: true,
+            });
+        });
     };
 
     return (
@@ -55,7 +79,7 @@ function QAquestions() {
             <Flex direction={'column'} gap={5}>
 
                 {questions.map((question) => (
-                    <React.Fragment key={question.id}>
+                    <React.Fragment key={question._id}>
                         <Center>
                             <Divider w={'40vw'} borderColor={'blue.200'} />
                         </Center>
@@ -63,7 +87,7 @@ function QAquestions() {
                             {question.description}
                         </Text>
                         <Flex justifyContent={'center'} direction={'row'} alignItems={'center'} gap={10}>
-                            <Button onClick={() => {handleOpenModal(question.text); setQid(question._id)}} bgColor='#5db1fd'>
+                            <Button onClick={() => {handleOpenModal(question.description); setQid(question._id)}} bgColor='#5db1fd'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <g stroke-width="1.5" fill="none" fill-rule="evenodd">
                                         <path d="M18.571 5.429h0a2 2 0 0 1 0 2.828l-9.9 9.9-4.24 1.416 1.412-4.245 9.9-9.9h0a2 2 0 0 1 2.828 0Z" class="icon_svg-stroke" stroke="#666" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -113,3 +137,4 @@ function QAquestions() {
 }
 
 export default QAquestions;
+

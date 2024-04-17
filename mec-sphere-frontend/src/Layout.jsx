@@ -10,7 +10,7 @@ const Layout = () => {
     const [isChatbotOpen, setChatbotOpen] = useState(false);
 
     return (
-        <Flex h={'100vh'} w={'100vw'} bgColor={'gray.50'} alignItems={'start'} justifyContent={'space-between'}>
+        <Flex h={'100vh'} w={'100vw'} overflowX={'hidden'} bgColor={'gray.50'} alignItems={'start'} justifyContent={'space-between'} >
             <Sidebar />
             {!isChatbotOpen && ( // Render the button only if isChatbotOpen is false
                 <Button

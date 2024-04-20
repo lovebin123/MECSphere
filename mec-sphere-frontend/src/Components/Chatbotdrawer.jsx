@@ -1,5 +1,6 @@
-import { Avatar, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Image, Input, Text } from "@chakra-ui/react";
+import { Button,Flex, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Image, Input, Text,Box, Container } from "@chakra-ui/react";
 import React, { useState } from "react";
+import meclogo from '../Images/mec_logo.jpg'
 import '../Pages/Home.css'
 const Loader = () => (
     <div className="loader"></div>
@@ -54,16 +55,32 @@ const Chatbotdrawer = ({ isOpen, onClose }) => {
           <DrawerCloseButton />
           <DrawerHeader textAlign={'center'}>PLACEMENT BOT</DrawerHeader>
           <DrawerBody>
+        
             {/* Render the messages and their corresponding responses */}
             {messages.map((message, index) => (
               <React.Fragment key={`message-response-${index}`}>
-                <Flex  alignItems={'flex-start'} justifyContent={'flex-end'} gap={1} mb={2}>
-                <Text minW={79} maxW={'220'} textColor={'white'} textTransform={'full-width'} display={'flex'} bgColor={'gray'} borderRadius={20} p={2} paddingLeft={3}>{message}</Text>
-                <Avatar size={'sm'} ml={3}/>
-                </Flex>
+                <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'teal'} ml={60} h={45} mb={10} mt={10} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{message}</Text>
                 {responses[index] && (
-                  <Text  className="typed" textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'pink'} mr={60}  mb={30} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15} >{responses[index]}</Text>
-                )}
+  <Flex  gap={3}>
+  <Image src="https://www.mec.ac.in/static/media/collegelogohollow.f2e70403.png" borderRadius={50} w={'40px'} h={'45px'} />
+
+    <Text
+      className="typed"
+      textColor="white"
+     
+      bgColor="#5db1fd"
+      
+
+      mb={30}
+      borderTopEndRadius={10}
+      borderTopLeftRadius={'-2'}
+      width={'12vw'}
+      p={'1em'}
+    >
+      {responses[index]}
+    </Text>
+  </Flex>
+)}
               </React.Fragment>
             ))}
             {loading && <Loader />} {/* Display loader if loading */}

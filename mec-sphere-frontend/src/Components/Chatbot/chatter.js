@@ -40,13 +40,13 @@ exports.run = void 0;
 // chatter.js
 var pdf_1 = require("langchain/document_loaders/fs/pdf");
 var text_splitter_1 = require("langchain/text_splitter");
-var openai_1 = require("@langchain/openai");
 var hnswlib_1 = require("@langchain/community/vectorstores/hnswlib");
 var chains_1 = require("langchain/chains");
-var openai_2 = require("@langchain/openai");
+var togetherai_1 = require("@langchain/community/embeddings/togetherai");
+var togetherai_2 = require("@langchain/community/chat_models/togetherai");
 function run(query) {
     return __awaiter(this, void 0, void 0, function () {
-        var loader, docs, splitter, splittedDocs, embeddings, vectorStore, vectorStoreRetriever, openAIApiKey, model, chain, answer, text, cleanedText, error_1;
+        var loader, docs, splitter, splittedDocs, embeddings, vectorStore, vectorStoreRetriever, model, chain, answer, text, cleanedText, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -62,18 +62,19 @@ function run(query) {
                     return [4 /*yield*/, splitter.splitDocuments(docs)];
                 case 2:
                     splittedDocs = _a.sent();
-                    embeddings = new openai_1.OpenAIEmbeddings();
+                    embeddings = new togetherai_1.TogetherAIEmbeddings({
+                        apiKey: process.env.TOGETHER_AI_API_KEY, // Default value
+                        modelName: "togethercomputer/m2-bert-80M-32k-retrieval", // Default value
+                    });
                     return [4 /*yield*/, hnswlib_1.HNSWLib.fromDocuments(splittedDocs, embeddings)];
                 case 3:
                     vectorStore = _a.sent();
                     vectorStoreRetriever = vectorStore.asRetriever();
-                    openAIApiKey = process.env.OPENAI_API_KEY;
-                    if (!openAIApiKey) {
-                        throw new Error("OpenAI API key not found. Please set the OPENAI_API_KEY environment variable.");
-                    }
-                    model = new openai_2.OpenAI({
-                        modelName: 'gpt-3.5-turbo',
-                        openAIApiKey: openAIApiKey // Provide the API key here
+                    model = new togetherai_2.ChatTogetherAI({
+                        temperature: 0.9,
+                        // In Node.js defaults to process.env.TOGETHER_AI_API_KEY
+                        apiKey: process.env.TOGETHER_AI_API_KEY,
+                        modelName: 'meta-llama/Llama-3-70b-chat-hf'
                     });
                     chain = chains_1.RetrievalQAChain.fromLLM(model, vectorStoreRetriever);
                     return [4 /*yield*/, chain.call({

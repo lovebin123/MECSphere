@@ -10,6 +10,9 @@ import Profile from './Pages/Profile';
 import { ChakraProvider } from '@chakra-ui/react';
 import LoginForm from './Pages/LoginForm';
 import Signup from './Pages/Signup';
+import Friends from './Pages/Friends'
+import Requests from './Pages/Requests'
+
 
 function App() {
   return (
@@ -25,6 +28,8 @@ function App() {
           
           <Route path='profile' element={<Profile/>} />
           <Route path='users' element={<Users/>} />
+          <Route path='friends' element={<Friends/>} />
+          <Route path='requests' element={<Requests/>} />
         </Route>
       </Routes>
       </ChakraProvider>

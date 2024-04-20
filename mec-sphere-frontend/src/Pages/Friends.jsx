@@ -9,34 +9,35 @@ const socket = io.connect("http://localhost:3001");
 
 function Users() {
   const [users, setUsers] = useState([]);
+  const[chatter, setChatter] = useState({name: "", room: ""});
   const { User, setUser } = useContext(AuthContext);
 
   useEffect(() => {
     // Fetch users data from the API
     axios
-      .get("http://localhost:4000/user")
+      .post("http://localhost:4000/user/friends", {id: User.id})
       .then((response) => {
+        console.log(response.data);
         setUsers(response.data);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
     
-      
   }, []);
 
-  const handleAddFriendClick =async (friendId) => {
-    try {
-      const response = await axios.post("http://localhost:4000/user/request", {
-        friendid: friendId,
-        userid: User.id,
-      });
-      return response.data;
-    } catch (error) {
-      console.error("Error rejecting friend request:", error);
-      throw error;
+  const joinRoom = ()=>{
+    if(chatter.name !== "" && chatter.room !== ""){
+      socket.emit("join_room", chatter.room);
     }
+  }
+
+  const handleChatClick = (userId, email, name) => {
+    // Handle chat button click
+    console.log(User.email + email);
+    setChatter({name: name, room: User.email});
   };
+
 
   return (
     
@@ -45,7 +46,7 @@ function Users() {
             <HStack justify="space-evenly">
               <Text>{user.name}</Text>
               <Flex>
-                <Button onClick={() => handleAddFriendClick(user._id)} colorScheme="green" size="sm" ml={2}>Add Friend</Button>
+                <Button onClick={() => handleChatClick(user._id, user.email, user.name)} colorScheme="blue" size="sm">Chat</Button>
               </Flex>
             </HStack>
           ))}

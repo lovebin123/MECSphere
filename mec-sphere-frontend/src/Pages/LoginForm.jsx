@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import './LoginForm.css';
+import React, { useState, useContext } from "react";
+import "./LoginForm.css";
+import { Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
+import AuthContext from "../contexts/AuthContext";
 
 const LoginForm = () => {
   // State variables to hold the username and password
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const { User, setUser } = useContext(AuthContext);
 
   // Event handlers to update the state variables when inputs change
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -18,23 +23,43 @@ const LoginForm = () => {
   // Event handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can handle the login logic, such as sending the username and password to a server
-    console.log('Username:', username);
-    console.log('Password:', password);
-    // Reset the form after submission
-    setUsername('');
-    setPassword('');
+
+    axios
+      .post("http://localhost:4000/user/login", {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response.data);
+        // Save the token to local storage
+        localStorage.setItem("token", response.data.token);
+        setUser({
+          id: response.data.id,
+          name: response.data.name,
+          token: response.data.token,
+          role: response.data.role,
+          status: true,
+          email: response.data.email,
+        });
+        console.log(localStorage.getItem("token"));
+        navigate("/dash");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+    setEmail("");
+    setPassword("");
   };
 
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="email">Email:</label>
           <input
             type="text"
-            id="username"
-            value={username}
+            id="email"
+            value={email}
             onChange={handleUsernameChange}
           />
         </div>

@@ -33,7 +33,24 @@ const userModel = mongoose.model(
         type: mongoose.Schema.Types.ObjectId,
       },
     ],
+    friends:[
+      {
+        type: mongoose.Schema.Types.ObjectId,
+      }
+    ],
     requests: [
+      {
+        accepted: {type: Boolean},
+        name:{type:"string"},
+        status: {
+          type: String, 
+        },
+        id: {
+          type: String,
+        },
+      },
+    ],
+    chatRequests: [
       {
         type: mongoose.Schema.Types.ObjectId,
       },

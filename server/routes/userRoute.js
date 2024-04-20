@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-})
+});
 
 router.post("/sign", async (req, res, next) => {
   const { email, password, name, role } = req.body;
@@ -59,8 +59,9 @@ router.post("/login", async (req, res, next) => {
     res.json({
       token: accessToken,
       name: user.name,
+      role: user.role,
       id: user.id,
-      gmail: user.email,
+      email: user.email,
     });
   } catch (err) {
     // Pass the error to the next middleware for centralized error handling
@@ -95,6 +96,161 @@ router.put("/update/:id", async (req, res) => {
     next(err);
   }
 });
+// Send friend request
+router.post("/add-friend/:id", async (req, res) => {
+  const { id } = req.params;
+  const friendId = req.body.friendId;
+
+  try {
+    const user = await userModel.findById(id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    user.friends.push(friendId);
+    await user.save();
+
+    res.json({ message: "Friend request sent successfully" });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/friends", async (req, res, next) => {
+  const { id } = req.body;
+
+  try {
+    const user = await userModel.findById(id);
+    if (!user) {  
+      return res.status(404).json({ error: "User not found" });
+    } 
+    
+    // Find the friends of the user
+    const friends = await userModel.find({ _id: { $in: user.friends } });
+
+    return res.json(friends);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/request", async (req, res, next) => {
+  try {
+    const { userid, friendid } = req.body;
+
+    const user = await userModel.findById(userid);
+
+    const friend = await userModel.findById(friendid);
+
+    // Check if the user has already sent a request to this friend
+    const existingRequest = friend.requests.find(
+      (request) => request.id === userid
+    );
+
+    if (existingRequest) {
+      // User has already sent a request to this friend
+      return res.json({
+        error: "You have already sent a request to this User.",
+      });
+    }
+
+    // Check if the friend has already received a request from this user
+    const existingReceivedRequest = user.requests.find(
+      (request) => request.id === friendid
+    );
+
+    if (existingReceivedRequest) {
+      // Friend has already received a request from this user
+      return res.json({
+        error: "You have already received a request from this User.",
+      });
+    }
+
+    // Add the request to the friend
+    friend.requests.push({
+      accepted: false,
+      name: user.name,
+      status: "pending",
+      id: userid,
+    });
+
+    await friend.save();
+
+    // Add the request to the user
+    user.requests.push({
+      accepted: false,
+      name: friend.name,
+      status: "received",
+      id: friendid,
+    });
+
+    await user.save();
+
+    res.json({ friend: friend });
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+router.post("/requests", async (req, res, next) => {
+  try {
+    const { id } = req.body;
+
+    const user = await userModel.findById(id).catch(() => {
+      console.log("cant find team");
+    });
+
+    res.json(user.requests);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/rejectrequest", async (req, res, next) => {
+  try {
+    const {  requestid, userid } = req.body;
+
+    const user = await userModel.findById(userid);
+
+    console.log(user.requests);
+
+    user.requests = user.requests.filter((request) => request.id !== requestid);
+    
+    await user.save();
+
+    res.json(user.requests);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/acceptrequest", async (req, res, next) => {
+  try {
+    const { userid, requestid } = req.body;
+
+    const friend = await userModel.findById(requestid);
+    const user = await userModel.findById(userid);
+
+    user.friends.push(requestid);
+    friend.friends.push(userid);
+    
+
+    user.requests = user.requests.filter((request) => request.id !== requestid);
+    
+
+
+    await friend.save();
+    await user.save();
+
+    res.json(user.requests);
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+
 // Error handling middleware
 router.use((err, req, res, next) => {
   console.error(err.stack);

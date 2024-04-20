@@ -68,7 +68,7 @@ const BarChart = () => {
     }, []);
 
     return (
-        <Flex h={'350px'} w={'53vw'} p={3}>
+        <Flex h={'350px'} w={'100%'}p={3}>
           <canvas  ref={chartRef}></canvas>
         </Flex>
     );

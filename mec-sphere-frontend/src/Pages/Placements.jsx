@@ -27,24 +27,24 @@ function Placements() {
   }, []);
   return (
     <Flex  position="relative"  w={'80vw'} flexDirection={'column'} gap={2} p={2}>
-      <Flex m={3} >
-        <Flex direction={'column'} w={'55vw'}>
+      <Flex m={3}  justifyContent={'space-between'}>
+        <Flex direction={'column'} flex={{ base: 1, md: 'unset' }}>
           <Flex gap={10}>
-            <Flex h={160} w={350} borderRadius={10} alignItems={'center'} bgColor={'rgba(177,196,248,0.5)'} justifyContent={'space-between'} boxShadow={'sm'}>
+            <Flex h={160} w={{ base: '100%', md: '50%' }} borderRadius={10} alignItems={'center'} bgColor={'rgba(177,196,248,0.5)'} justifyContent={'space-between'} boxShadow={'sm'}>
               <Flex p={3} direction={'column'} color={'blue.800'} ml={4} minW={150}>
                 <Heading mb={3}>{studentsPlaced}+</Heading>
                 <Text fontWeight={'semibold'}>Students Placed</Text>
               </Flex>
               <Image h={185} w={250} mr={-20} src={banner} />
             </Flex>
-            <Flex gap={2} pt={10} h={160} w={240} boxShadow={'sm'} bgColor={'teal.100'} borderRadius={10} p={4} direction={'column'} ml={3} >
+            <Flex gap={2} pt={10} h={160} w={{ base: '70%', md: '40%' }} boxShadow={'sm'} bgColor={'teal.100'} borderRadius={10} p={4} direction={'column'} ml={3} >
               <Text fontWeight={'semibold'}>Highest Package</Text>
               <Heading fontSize={25}>55 LPA</Heading>
               <Image src={high} h={100} w={100} mt={-39} />
             </Flex>
           </Flex>
-          <Flex mt={'3'} ml={'-3'}>
-            <Barchart />
+          <Flex mt={'3'} alignItems={'center'} justifyContent={'center'}> 
+            <Barchart w={'100%'}/>
           </Flex>
         </Flex>
         <Flex direction={'column'} bgColor={'gray.50'} boxShadow={'sm'} alignItems={'center'} >

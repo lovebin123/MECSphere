@@ -14,11 +14,11 @@ const BarChart = () => {
                 datasets: [{
                   label: 'Placed',
                   data: [100, 130, 200, 120, 300],
-                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                  borderColor: 'rgba(75, 192, 192, 1)',
+                  backgroundColor: 'rgba(52,222,236, 0.2)',
+                  borderColor: 'rgba(52,222,236, 1)',
                   borderWidth: 2,
                   fill:true,
-                  pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                  pointBackgroundColor: 'rgba(52,222,236, 1)',
                   pointBorderColor: '#fff',
                   pointBorderWidth: 1,
                   pointRadius: 4,
@@ -68,7 +68,7 @@ const BarChart = () => {
     }, []);
 
     return (
-        <Flex h={'55vh'} w={'45vw'} p={3}>
+        <Flex h={'60vh'} w={'53vw'} p={3}>
           <canvas  ref={chartRef}></canvas>
         </Flex>
     );

@@ -1,4 +1,4 @@
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Image, Input, Text } from "@chakra-ui/react";
+import { Avatar, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Image, Input, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import '../Pages/Home.css'
 const Loader = () => (
@@ -57,7 +57,10 @@ const Chatbotdrawer = ({ isOpen, onClose }) => {
             {/* Render the messages and their corresponding responses */}
             {messages.map((message, index) => (
               <React.Fragment key={`message-response-${index}`}>
-                <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'teal'} ml={60} h={45} mb={10} mt={10} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{message}</Text>
+                <Flex  alignItems={'flex-start'} justifyContent={'flex-end'} gap={1} mb={2}>
+                <Text minW={79} maxW={'220'} textColor={'white'} textTransform={'full-width'} display={'flex'} bgColor={'gray'} borderRadius={20} p={2} paddingLeft={3}>{message}</Text>
+                <Avatar size={'sm'} ml={3}/>
+                </Flex>
                 {responses[index] && (
                   <Text  className="typed" textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'pink'} mr={60}  mb={30} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15} >{responses[index]}</Text>
                 )}

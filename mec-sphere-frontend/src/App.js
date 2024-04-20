@@ -4,11 +4,15 @@ import Home from './Pages/Home';
 import Layout from './Layout';
 import Placements from './Pages/Placements';
 import Alumniconnect from './Pages/Alumniconnect';
+import Users from './Pages/Users';
 import QA from './Pages/QA';
 import Profile from './Pages/Profile';
 import { ChakraProvider } from '@chakra-ui/react';
 import LoginForm from './Pages/LoginForm';
 import Signup from './Pages/Signup';
+import Friends from './Pages/Friends'
+import Requests from './Pages/Requests'
+
 
 function App() {
   return (
@@ -23,6 +27,9 @@ function App() {
           <Route path="qa" element={<QA/>} />
           
           <Route path='profile' element={<Profile/>} />
+          <Route path='users' element={<Users/>} />
+          <Route path='friends' element={<Friends/>} />
+          <Route path='requests' element={<Requests/>} />
         </Route>
       </Routes>
       </ChakraProvider>

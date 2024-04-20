@@ -24,7 +24,18 @@ function Users() {
       });
   }, []);
 
-  const accept = () => {};
+  const accept = async(requestId) => {
+    try {
+        const response = await axios.post("http://localhost:4000/user/acceptrequest", {
+          requestid: requestId,
+          userid: User.id,
+        });
+        return response.data;
+      } catch (error) {
+        console.error("Error rejecting friend request:", error);
+        throw error;
+      }
+  };
 
   const reject = async (requestId) => {
     try {
@@ -51,7 +62,7 @@ function Users() {
         <HStack justify="space-evenly">
           <Text>{request.name}</Text>
           <Flex>
-            <Button onClick={accept} colorScheme="blue" size="sm">
+            <Button onClick={() =>accept(request.id)} colorScheme="blue" size="sm">
               accept
             </Button>
             <Button onClick={()=>reject(request.id)} colorScheme="blue" size="sm">

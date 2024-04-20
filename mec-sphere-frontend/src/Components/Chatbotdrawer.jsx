@@ -57,32 +57,56 @@ const Chatbotdrawer = ({ isOpen, onClose }) => {
           <DrawerBody>
         
             {/* Render the messages and their corresponding responses */}
-            {messages.map((message, index) => (
-              <React.Fragment key={`message-response-${index}`}>
-                <Text textAlign={'center'} className="typed" textColor={'white'} display={'flex'} p={'1em'} alignItems={'center'} bgColor={'#648af2'} ml={60}  mb={10} mt={10} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{message}</Text>
-                {responses[index] && (
-  <Flex  gap={3}>
-  <Image src="https://www.mec.ac.in/static/media/collegelogohollow.f2e70403.png" borderRadius={50} w={'40px'} h={'45px'} />
-
+         {messages.map((message, index) => (
+  <React.Fragment key={`message-response-${index}`}>
     <Text
+      textAlign={'center'}
       className="typed"
-      textColor="white"
-     
-      bgColor="#5db1fd"
-      
-
-      mb={30}
-      borderTopEndRadius={10}
-      borderTopLeftRadius={'-2'}
-      width={'12vw'}
+      textColor={'white'}
+      display={'flex'}
       p={'1em'}
+      alignItems={'center'}
+      bgColor={'#648af2'}
+      ml={60}
+      mb={10}
+      mt={10}
+      borderTopEndRadius={10}
+      borderTopLeftRadius={15}
+      paddingLeft={15}
     >
-      {responses[index]}
+      {message}
     </Text>
-  </Flex>
-)}
-              </React.Fragment>
-            ))}
+    {responses[index] && (
+      <Flex gap={3}>
+        <Image
+          src="https://www.mec.ac.in/static/media/collegelogohollow.f2e70403.png"
+          borderRadius={50}
+          w={'40px'}
+          h={'45px'}
+        />
+        <Text
+          className="typed"
+          textColor="white"
+          bgColor="#5db1fd"
+          mb={30}
+          borderTopEndRadius={10}
+          borderTopLeftRadius={'-2'}
+          width={'12vw'}
+          p={'1em'}
+        >
+          {responses[index].split('\n').map((line, i) => (
+            <React.Fragment key={i}>
+              {line}
+              <br />
+            </React.Fragment>
+          ))}
+        </Text>
+      </Flex>
+    )}
+  </React.Fragment>
+))}
+
+        
             {loading && <Loader />} {/* Display loader if loading */}
           </DrawerBody>
           <DrawerFooter>

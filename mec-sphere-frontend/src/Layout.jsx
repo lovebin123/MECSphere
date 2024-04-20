@@ -35,7 +35,7 @@ const Layout = () => {
                 />
             )}
             <Chatbotdrawer isOpen={isChatbotOpen} onClose={() => setChatbotOpen(false)} />
-            <div>
+            <div style={{ overflowY: 'auto',overflowX:'hidden', maxHeight: 'calc(100vh - 2px)' }}>
                 <Outlet />
             </div>
         </Flex>

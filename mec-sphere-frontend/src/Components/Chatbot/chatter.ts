@@ -5,6 +5,8 @@ import { OpenAIEmbeddings } from "@langchain/openai";
 import { HNSWLib } from "@langchain/community/vectorstores/hnswlib";
 import { RetrievalQAChain } from "langchain/chains";
 import { OpenAI } from "@langchain/openai";
+import { TogetherAIEmbeddings } from "@langchain/community/embeddings/togetherai";
+import { ChatTogetherAI } from "@langchain/community/chat_models/togetherai";
 
 export async function run(query) {
   try {
@@ -17,18 +19,19 @@ export async function run(query) {
     });
     const splittedDocs = await splitter.splitDocuments(docs);
 
-    const embeddings = new OpenAIEmbeddings();
+    const embeddings = new TogetherAIEmbeddings({
+      apiKey: process.env.TOGETHER_AI_API_KEY, // Default value
+      modelName: "togethercomputer/m2-bert-80M-32k-retrieval", // Default value
+    });
     const vectorStore = await HNSWLib.fromDocuments(splittedDocs, embeddings);
     const vectorStoreRetriever = vectorStore.asRetriever();
 
-    const openAIApiKey = process.env.OPENAI_API_KEY; 
-    if (!openAIApiKey) {
-      throw new Error("OpenAI API key not found. Please set the OPENAI_API_KEY environment variable.");
-    }
-
-    const model = new OpenAI({
-      modelName: 'gpt-3.5-turbo',
-      openAIApiKey: openAIApiKey // Provide the API key here
+    
+    const model = new ChatTogetherAI({
+      temperature: 0.9,
+      // In Node.js defaults to process.env.TOGETHER_AI_API_KEY
+      apiKey: process.env.TOGETHER_AI_API_KEY,
+      modelName:'meta-llama/Llama-3-70b-chat-hf'
     });
 
     const chain = RetrievalQAChain.fromLLM(model, vectorStoreRetriever);

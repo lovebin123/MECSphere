@@ -26,8 +26,8 @@ function Placements() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <Flex position="relative" h="100vh" w={'80vw'} flexDirection={'column'} gap={2} p={2}>
-      <Flex m={3}>
+    <Flex  position="relative"  w={'80vw'} flexDirection={'column'} gap={2} p={2}>
+      <Flex m={3} >
         <Flex direction={'column'} w={'55vw'}>
           <Flex gap={10}>
             <Flex h={160} w={350} borderRadius={10} alignItems={'center'} bgColor={'rgba(177,196,248,0.5)'} justifyContent={'space-between'} boxShadow={'sm'}>
@@ -47,7 +47,7 @@ function Placements() {
             <Barchart />
           </Flex>
         </Flex>
-        <Flex direction={'column'} bgColor={'gray.50'} boxShadow={'sm'} h={'95vh'} alignItems={'center'} >
+        <Flex direction={'column'} bgColor={'gray.50'} boxShadow={'sm'} alignItems={'center'} >
           <DonutChart />
           <Divider mt={-30} />
           <Flex gap={3} direction={'column'} mt={4} w={'20vw'}>
@@ -69,6 +69,7 @@ function Placements() {
           </Flex>
         </Flex>
       </Flex>
+      <Tablecomp/>
     </Flex>
   );
 }

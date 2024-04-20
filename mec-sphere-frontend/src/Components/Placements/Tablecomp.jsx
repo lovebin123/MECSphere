@@ -11,7 +11,7 @@ import {
   } from '@chakra-ui/react'
 const Tablecomp = () => {
     return (
-        <TableContainer borderRadius={5}>
+        <TableContainer borderRadius={5} p={4}>
             <Table variant='striped' >
                 <Thead bgColor={'rgba(120,138,242, 0.6)'} >
                     <Tr >

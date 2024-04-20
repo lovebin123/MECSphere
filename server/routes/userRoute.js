@@ -4,8 +4,17 @@ const bcrypt = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 const { validateToken } = require("../middleware/authMiddleware");
 
+router.get("/", async (req, res, next) => {
+  try {
+    const users = await userModel.find();
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
+})
+
 router.post("/sign", async (req, res, next) => {
-  const { email, password, name } = req.body;
+  const { email, password, name, role } = req.body;
 
   try {
     const hash = await bcrypt.hash(password, 10);
@@ -13,6 +22,7 @@ router.post("/sign", async (req, res, next) => {
     const newUser = new userModel({
       email: email,
       name: name,
+      role: role,
       password: hash,
     });
 

@@ -4,6 +4,7 @@ import Home from './Pages/Home';
 import Layout from './Layout';
 import Placements from './Pages/Placements';
 import Alumniconnect from './Pages/Alumniconnect';
+import Users from './Pages/Users';
 import QA from './Pages/QA';
 import Profile from './Pages/Profile';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -18,6 +19,7 @@ function App() {
           <Route path="alumniconnect" element={<Alumniconnect/>} />
           <Route path="qa" element={<QA/>} />
           <Route path='profile' element={<Profile/>} />
+          <Route path='users' element={<Users/>} />
         </Route>
       </Routes>
       </ChakraProvider>

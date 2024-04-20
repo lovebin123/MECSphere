@@ -16,6 +16,7 @@ const Sidebar = () => {
                         <Tab as={Link} to="/dash/alumniconnect" sx={{ borderRadius: '10px'}} display={'flex'} justifyContent={'start'} gap={3}><IoPeople />Alumni Connect</Tab>
                         <Tab as={Link} to="/dash/qa" sx={{ borderRadius: '10px'}} display={'flex'} justifyContent={'start'} gap={3}><MdQuestionAnswer />Q&A</Tab>
                         <Tab as={Link} to="/dash/profile" sx={{ borderRadius: '10px'}} display={'flex'} justifyContent={'start'} gap={3}><FaUser />Profile</Tab>
+                        <Tab as={Link} to="/dash/users" sx={{ borderRadius: '10px'}} display={'flex'} justifyContent={'start'} gap={3}><FaUser />Users</Tab>
                     </TabList>
                 </Tabs>
             </Flex>

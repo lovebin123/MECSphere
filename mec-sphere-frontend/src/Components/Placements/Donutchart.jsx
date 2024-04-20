@@ -14,20 +14,13 @@ const DonutChart = () => {
                 labels: ['CS', 'EC', 'EEE', 'Mech', 'EB'],
                 datasets: [{
                     label: 'Placements',
-                    data: [80, 70, 60, 65, 75], // Example data for placements percentage
+                    data: [80, 70, 60, 65, 75], 
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(255, 206, 86, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)'
+                        'rgba(105,101,219, 0.6)',
+                        'rgba(100,138,242, 0.6)',
+                        'rgba(93,177,253, 0.6)',
+                        'rgba(52,222,236, 0.6)',
+                        'rgba(111,249,224, 0.6)'
                     ],
                     borderWidth: 1
                 }]
@@ -35,7 +28,7 @@ const DonutChart = () => {
             options: {
                 plugins: {
                     legend: {
-                        position: 'top'
+                        position: 'right'
                     }
                 }
             }
@@ -47,7 +40,7 @@ const DonutChart = () => {
     }, []);
 
     return (
-        <Flex w={'30vw'} h={'50vh'} p={3}  justifyContent={'center'}>
+        <Flex w={'25vw'} h={'280'} p={3} justifyContent={'center'} mt={'-10'}>
             <canvas ref={chartRef}></canvas>
         </Flex>
     );

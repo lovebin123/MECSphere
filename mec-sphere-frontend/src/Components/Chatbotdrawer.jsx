@@ -59,7 +59,7 @@ const Chatbotdrawer = ({ isOpen, onClose }) => {
             {/* Render the messages and their corresponding responses */}
             {messages.map((message, index) => (
               <React.Fragment key={`message-response-${index}`}>
-                <Text textAlign={'center'} className="typed" textColor={'white'} display={'flex'} p={'1em'} alignItems={'center'} bgColor={'#648af2'} ml={60}  mb={10} mt={10} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{message}</Text>
+                <Text textAlign={'center'} textColor={'white'} textTransform={'full-width'} display={'flex'} alignItems={'center'} bgColor={'teal'} ml={60} h={45} mb={10} mt={10} borderTopEndRadius={10} borderTopLeftRadius={15} paddingLeft={15}>{message}</Text>
                 {responses[index] && (
   <Flex  gap={3}>
   <Image src="https://www.mec.ac.in/static/media/collegelogohollow.f2e70403.png" borderRadius={50} w={'40px'} h={'45px'} />

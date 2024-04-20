@@ -176,14 +176,7 @@ router.post("/request", async (req, res, next) => {
 
     await friend.save();
 
-    // Add the request to the user
-    user.requests.push({
-      accepted: false,
-      name: friend.name,
-      status: "received",
-      id: friendid,
-    });
-
+  
     await user.save();
 
     res.json({ friend: friend });

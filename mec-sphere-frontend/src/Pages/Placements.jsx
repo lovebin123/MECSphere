@@ -27,7 +27,7 @@ function Placements() {
   }, []);
   return (
     <Flex  position="relative"  w={'80vw'} flexDirection={'column'} gap={2} p={2}>
-      <Flex m={3} justifyContent={'center'} alignItems={'center'} >
+      <Flex m={3}  justifyContent={'space-between'}>
         <Flex direction={'column'} flex={{ base: 1, md: 'unset' }}>
           <Flex gap={10}>
             <Flex h={160} w={{ base: '100%', md: '50%' }} borderRadius={10} alignItems={'center'} bgColor={'rgba(177,196,248,0.5)'} justifyContent={'space-between'} boxShadow={'sm'}>

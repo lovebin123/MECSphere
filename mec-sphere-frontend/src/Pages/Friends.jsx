@@ -62,7 +62,7 @@ function Users() {
               </Flex>
             </HStack>
           ))}
-          <Chat socket={socket} username={User.email} room={chatter.room}/>
+          <Chat socket={socket} username={User.name} room={chatter.room}/>
       </Flex>
   
   );

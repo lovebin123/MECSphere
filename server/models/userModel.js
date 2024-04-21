@@ -53,6 +53,7 @@ const userModel = mongoose.model(
     chatRequests: [
       {
         name:{type:"string"},
+        email:{type:"string"},
         id: {
           type: String,
         },

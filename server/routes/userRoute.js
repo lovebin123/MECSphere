@@ -216,21 +216,11 @@ router.post("/chatrequest", async (req, res, next) => {
       });
     }
 
-    // Check if the friend has already received a request from this user
-    const existingReceivedRequest = user.requests.find(
-      (request) => request.id === friendid
-    );
-
-    if (existingReceivedRequest) {
-      // Friend has already received a request from this user
-      return res.json({
-        error: "You have already received a request from this User.",
-      });
-    }
 
     // Add the request to the friend
     friend.chatRequests.push({
       name: user.name,
+      email: user.email,
       id: userid,
     });
 

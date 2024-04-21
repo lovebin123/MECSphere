@@ -35,8 +35,6 @@ function Profile() {
           <Friendbox/>
           <Friendbox/>
           <Friendbox/>
-          <Friendbox/>
-          <Friendbox/>
           </Flex>
         </Flex>
       </Flex>

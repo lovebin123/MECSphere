@@ -4,7 +4,7 @@ dotenv.config();
 
 const dbConnect = async () => {
   try {
-    await mongoose.connect("mongodb+srv://ma:123@cluster0.0or2qai.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+    await mongoose.connect(process.env.CON, {
       dbName: "first",
     });
     console.log("Connected to the database successfully");

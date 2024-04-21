@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import apiClient from "../services/api-client";
 import { Button, Flex, Text, HStack } from "@chakra-ui/react";
 import io from "socket.io-client";
 import "./chat.css";
 import AuthContext from "../contexts/AuthContext";
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("https://mecsphere.onrender.com");
 
 function Users() {
   const [requests, setRequests] = useState([]);
@@ -13,7 +13,7 @@ function Users() {
 
   useEffect(() => {
     // Fetch users data from the API
-    axios
+    apiClient
       .post("http://localhost:4000/user/requests", { id: User.id })
       .then((response) => {
         console.log(response.data);
@@ -26,7 +26,7 @@ function Users() {
 
   const accept = async(requestId) => {
     try {
-        const response = await axios.post("http://localhost:4000/user/acceptrequest", {
+        const response = await apiClient.post("http://localhost:4000/user/acceptrequest", {
           requestid: requestId,
           userid: User.id,
         });
@@ -39,7 +39,7 @@ function Users() {
 
   const reject = async (requestId) => {
     try {
-      const response = await axios.post("http://localhost:4000/user/rejectrequest", {
+      const response = await apiClient.post("/user/rejectrequest", {
         requestid: requestId,
         userid: User.id,
       });

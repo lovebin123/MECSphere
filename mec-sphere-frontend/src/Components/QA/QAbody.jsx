@@ -19,7 +19,7 @@ function QAbody() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/answers")
+      .get("https://mecsphere.onrender.com/answers")
       .then((response) => {
         // Shuffle the answers array
         const shuffledAnswers = shuffleArray(response.data);

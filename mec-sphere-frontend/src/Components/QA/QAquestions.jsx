@@ -19,7 +19,7 @@ function QAquestions() {
 
     const fetchQuestions = async () => {
         try {
-            const response = await fetch('http://localhost:4000/questions');
+            const response = await fetch('https://mecsphere.onrender.com/questions');
             const data = await response.json();
             setQuestions(data);
         } catch (error) {
@@ -44,7 +44,7 @@ function QAquestions() {
             qid: qidd,
             ans:textValue
         }
-        axios.post('http://localhost:4000/answers/add', data).then((response) => {
+        axios.post('https://mecsphere.onrender.com/answers/add', data).then((response) => {
             // Update questions state after posting the answer
             setQuestions([{
                 _id: response.data._id,

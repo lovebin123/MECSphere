@@ -52,7 +52,10 @@ const userModel = mongoose.model(
     ],
     chatRequests: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        name:{type:"string"},
+        id: {
+          type: String,
+        },
       },
     ],
     notifications: [

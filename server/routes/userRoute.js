@@ -185,6 +185,51 @@ router.post("/request", async (req, res, next) => {
   }
 });
 
+router.post("/chatrequest", async (req, res, next) => {
+  try {
+    const { userid, friendid } = req.body;
+
+    const user = await userModel.findById(userid);
+
+    const friend = await userModel.findById(friendid);
+
+    // Check if the user has already sent a request to this friend
+    const existingRequest = friend.chatRequests.find(
+      (request) => request.id === userid
+    );
+
+    if (existingRequest) {
+      // User has already sent a request to this friend
+      return res.json({
+        error: "You have already sent a request to this User.",
+      });
+    }
+
+    // Check if the friend has already received a request from this user
+    const existingReceivedRequest = user.requests.find(
+      (request) => request.id === friendid
+    );
+
+    if (existingReceivedRequest) {
+      // Friend has already received a request from this user
+      return res.json({
+        error: "You have already received a request from this User.",
+      });
+    }
+
+    // Add the request to the friend
+    friend.chatRequests.push({
+      name: user.name,
+      id: userid,
+    });
+
+    await friend.save();
+
+    res.json({ friend: friend });
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.post("/requests", async (req, res, next) => {
   try {
@@ -195,6 +240,20 @@ router.post("/requests", async (req, res, next) => {
     });
 
     res.json(user.requests);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/chatrequests", async (req, res, next) => {
+  try {
+    const { id } = req.body;
+
+    const user = await userModel.findById(id).catch(() => {
+      console.log("cant find user");
+    });
+
+    res.json(user.chatRequests);
   } catch (error) {
     next(error);
   }

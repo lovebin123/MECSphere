@@ -12,6 +12,7 @@ import LoginForm from './Pages/LoginForm';
 import Signup from './Pages/Signup';
 import Friends from './Pages/Friends'
 import Requests from './Pages/Requests'
+import UserChat from './Pages/UserChats';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path='users' element={<Users/>} />
           <Route path='friends' element={<Friends/>} />
           <Route path='requests' element={<Requests/>} />
+          <Route path='chat' element={<UserChat/>} />
         </Route>
       </Routes>
       </ChakraProvider>

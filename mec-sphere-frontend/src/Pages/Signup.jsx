@@ -1,4 +1,4 @@
-import { Button, Flex, FormControl, FormLabel, Input, Select } from "@chakra-ui/react";
+import { Button, Flex, FormControl, FormLabel, Input, Select, position, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
 
@@ -9,6 +9,7 @@ const Signup = () => {
     password: "",
     role: "",
   });
+  const toast = useToast()
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -19,7 +20,10 @@ const Signup = () => {
         console.log(response);
       })
       .catch((error) => {
-        console.log(error);
+        toast({
+          title:error.message,
+          position:'top'
+        })
       });
   };
   return (

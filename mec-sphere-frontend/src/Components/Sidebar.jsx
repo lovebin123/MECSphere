@@ -15,12 +15,12 @@ import { MdQuestionAnswer } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
-import axios from "axios";
+import apiClient from "../services/api-client";
 const Sidebar = () => {
   const { User, setUser } = useContext(AuthContext);
   useEffect(() => {
-    axios
-      .get("http://localhost:4000/user/logcheck", {
+    apiClient
+      .get("/user/logcheck", {
         headers: {
           token: localStorage.getItem("token"),
         },

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./LoginForm.css";
 import { Navigate, useNavigate } from "react-router-dom";
-import axios from "axios";
+import apiClient from "../services/api-client";
 import AuthContext from "../contexts/AuthContext";
 
 const LoginForm = () => {
@@ -24,8 +24,8 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post("http://localhost:4000/user/login", {
+    apiClient
+      .post("/user/login", {
         email: email,
         password: password,
       })

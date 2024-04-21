@@ -152,6 +152,17 @@ const Sidebar = () => {
               <FaUser />
               Requests
             </Tab>
+            <Tab
+              as={Link}
+              to="/dash/chat"
+              sx={{ borderRadius: "10px" }}
+              display={"flex"}
+              justifyContent={"start"}
+              gap={3}
+            >
+              <FaUser />
+              Chats
+            </Tab>
           </TabList>
         </Tabs>
       </Flex>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button, Flex, Text, HStack } from "@chakra-ui/react";
 import io from "socket.io-client";
 import "./chat.css"
+import Chat from "./Chat";
 import AuthContext from "../contexts/AuthContext";
 
 const socket = io.connect("http://localhost:3001");
@@ -32,10 +33,21 @@ function Users() {
     }
   }
 
-  const handleChatClick = (userId, email, name) => {
+  const handleChatClick = (userid,email, name) => {
     // Handle chat button click
-    console.log(User.email + email);
-    setChatter({name: name, room: User.email});
+    axios
+      .post("http://localhost:4000/user/chatrequest", {
+        friendid: userid,
+        userid: User.id,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+      });
+    setChatter({name: name, room: User.email+email});
+    joinRoom();
   };
 
 
@@ -50,6 +62,7 @@ function Users() {
               </Flex>
             </HStack>
           ))}
+          <Chat socket={socket} username={User.email} room={chatter.room}/>
       </Flex>
   
   );

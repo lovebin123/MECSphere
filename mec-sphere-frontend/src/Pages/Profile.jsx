@@ -2,7 +2,19 @@ import { Avatar, Button, Flex, FormLabel, Input, InputGroup, InputRightAddon, Te
 import Topbar from '../Components/Profile/Topbar';
 import { FaSearch } from 'react-icons/fa';
 import Friendbox from '../Components/Profile/Friendbox';
+import { useEffect, useState } from 'react';
 function Profile() {
+  const friends=[{id:1,username:'mary1',email:'mary1@gmail.com'},{id:2,username:'mary2',email:'mary2@gmail.com'},{id:3,username:'mary3',email:'mary3@gmail.com'}]
+  const [filteredFriends,setFilteredFriends] = useState(friends)
+  const handleSearch = (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filtered = friends.filter(
+            (friend) =>
+                friend.username.toLowerCase().includes(searchTerm)
+        );
+        setFilteredFriends(filtered);
+    };
+    
   return (
     <Flex position="relative" direction={'column'} maxH="100vh" w={'80vw'}>
       <Topbar />
@@ -28,13 +40,15 @@ function Profile() {
         <Flex direction={'column'} p={5} w={'40%'} gap={3}>
           <Text fontSize={'20'} fontWeight={'semibold'}>Your Friends</Text>
           <InputGroup >
-            <Input placeholder='Search friends' />
+            <Input placeholder='Search friends'onChange={handleSearch} />
             <InputRightAddon ><FaSearch /></InputRightAddon>
           </InputGroup>
           <Flex direction={'column'} gap={3} >
-          <Friendbox/>
-          <Friendbox/>
-          <Friendbox/>
+            {
+              (filteredFriends).map((friend)=>(
+                <Friendbox key={friend.id} username={friend.username} email={friend.email}/>
+              ))
+            }
           </Flex>
         </Flex>
       </Flex>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import apiClient from "../services/api-client";
 import { Button, Flex, Text, HStack } from "@chakra-ui/react";
 import io from "socket.io-client";
 import "./chat.css"
 import AuthContext from "../contexts/AuthContext";
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("https://mecsphere.onrender.com");
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -13,8 +13,8 @@ function Users() {
 
   useEffect(() => {
     // Fetch users data from the API
-    axios
-      .get("http://localhost:4000/user")
+    apiClient
+      .get("/user")
       .then((response) => {
         setUsers(response.data);
       })
@@ -27,7 +27,7 @@ function Users() {
 
   const handleAddFriendClick =async (friendId) => {
     try {
-      const response = await axios.post("http://localhost:4000/user/request", {
+      const response = await apiClient.post("/user/request", {
         friendid: friendId,
         userid: User.id,
       });

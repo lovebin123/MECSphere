@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import apiClient from "../services/api-client";
 import { Button, Flex, Text, HStack } from "@chakra-ui/react";
 import io from "socket.io-client";
 import "./chat.css"
 import Chat from "./Chat";
 import AuthContext from "../contexts/AuthContext";
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("https://mecsphere.onrender.com");
 
 
 function Chats() {
@@ -22,8 +22,8 @@ function Chats() {
 
   useEffect(() => {
     // Fetch users data from the API
-    axios
-      .post("http://localhost:4000/user/chatrequests", { id: User.id })
+    apiClient
+      .post("/user/chatrequests", { id: User.id })
       .then((response) => {
         console.log(response.data);
         setRequests(response.data);
@@ -59,7 +59,7 @@ function Chats() {
           </Flex>
         </HStack>
       ))}
-      <Chat socket={socket} username={User.email} room={chatter.room}/>
+      <Chat socket={socket} username={User.name} room={chatter.room}/>
     </Flex>
   );
 }

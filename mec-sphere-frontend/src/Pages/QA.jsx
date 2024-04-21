@@ -22,6 +22,7 @@ import {
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import QAbody from "../Components/QA/QAbody";
 import QAquestions from "../Components/QA/QAquestions";
+import apiClient from "../services/api-client";
 
 function QA() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,7 +34,7 @@ function QA() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:4000/questions/add", {
+      const response = await fetch("https://mecsphere.onrender.com/questions/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

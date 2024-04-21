@@ -1,6 +1,6 @@
 import { Button, Flex, FormControl, FormLabel, Input, Select, position, useToast } from "@chakra-ui/react";
 import { useState } from "react";
-import axios from "axios";
+import apiClient from "../services/api-client";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -14,8 +14,8 @@ const Signup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const submit = () => {
-    axios
-      .post("http://localhost:4000/user/sign", formData)
+    apiClient
+      .post("/user/sign", formData)
       .then((response) => {
         console.log(response);
       })

@@ -17,8 +17,18 @@ router.post("/sign", async (req, res, next) => {
   const { email, password, name, role } = req.body;
 
   try {
+    // Check if user with the given email already exists
+    const existingUser = await userModel.findOne({ email: email });
+
+    if (existingUser) {
+      // User already exists, send an error response
+      return res.status(400).json({ error: "User already exists" });
+    }
+
+    // If user doesn't exist, hash the password
     const hash = await bcrypt.hash(password, 10);
 
+    // Create a new user
     const newUser = new userModel({
       email: email,
       name: name,
@@ -34,6 +44,7 @@ router.post("/sign", async (req, res, next) => {
     next(err);
   }
 });
+
 
 router.post("/login", async (req, res, next) => {
   const { email, password } = req.body;

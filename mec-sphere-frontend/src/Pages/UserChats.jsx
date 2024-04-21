@@ -2,14 +2,23 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Button, Flex, Text, HStack } from "@chakra-ui/react";
 import io from "socket.io-client";
-import "./chat.css";
+import "./chat.css"
+import Chat from "./Chat";
 import AuthContext from "../contexts/AuthContext";
 
 const socket = io.connect("http://localhost:3001");
 
+
 function Chats() {
   const [requests, setRequests] = useState([]);
   const { User, setUser } = useContext(AuthContext);
+  const[chatter, setChatter] = useState({name: "", room: ""});
+
+  const joinRoom = ()=>{
+    if(chatter.name !== "" && chatter.room !== ""){
+      socket.emit("join_room", chatter.room);
+    }
+  }
 
   useEffect(() => {
     // Fetch users data from the API
@@ -24,8 +33,10 @@ function Chats() {
       });
   }, []);
 
-  const accept = async(requestId) => {
-    
+  const accept = async(name,email) => {
+    const st = (email+User.email);
+    setChatter({name: name, room: st});
+    joinRoom();
   };
 
 
@@ -41,13 +52,14 @@ function Chats() {
         <HStack justify="space-evenly">
           <Text>{request.name}</Text>
           <Flex>
-            <Button onClick={() =>accept(request.id)} colorScheme="blue" size="sm">
+            <Button onClick={() =>accept(request.id, request.email)} colorScheme="blue" size="sm">
               accept
             </Button>
             
           </Flex>
         </HStack>
       ))}
+      <Chat socket={socket} username={User.email} room={chatter.room}/>
     </Flex>
   );
 }

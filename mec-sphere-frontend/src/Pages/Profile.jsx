@@ -4,7 +4,7 @@ import { FaSearch } from 'react-icons/fa';
 import Friendbox from '../Components/Profile/Friendbox';
 import { useEffect, useState } from 'react';
 function Profile() {
-  const friends=[{id:1,username:'mary1',email:'mary1@gmail.com'},{id:2,username:'mary2',email:'mary2@gmail.com'},{id:3,username:'mary3',email:'mary3@gmail.com'}]
+  const friends=[{id:1,username:'mary1',email:'mary1@gmail.com'},{id:2,username:'mary2',email:'mary2@gmail.com'},{id:3,username:'mary3',email:'mary3@gmail.com'},{id:4,username:'mary3',email:'mary3@gmail.com'},{id:5,username:'mary3',email:'mary3@gmail.com'}]
   const [filteredFriends,setFilteredFriends] = useState(friends)
   const handleSearch = (e) => {
         const searchTerm = e.target.value.toLowerCase();
@@ -28,7 +28,7 @@ function Profile() {
             </Flex>
             <Flex direction={'column'}>
               <FormLabel>Last Name</FormLabel>
-              <Input name="name" placeholder='Mary Ann' />
+              <Input name="name" placeholder='Jose' />
             </Flex>
           </Flex>
           <Flex direction={'column'}>
@@ -43,7 +43,7 @@ function Profile() {
             <Input placeholder='Search friends'onChange={handleSearch} />
             <InputRightAddon ><FaSearch /></InputRightAddon>
           </InputGroup>
-          <Flex direction={'column'} gap={3} >
+          <Flex direction={'column'} gap={3}  style={{ overflowY: 'auto', maxHeight: '49vh' }} >
             {
               (filteredFriends).map((friend)=>(
                 <Friendbox key={friend.id} username={friend.username} email={friend.email}/>

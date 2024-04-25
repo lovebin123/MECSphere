@@ -8,18 +8,18 @@ import Users from './Pages/Users';
 import QA from './Pages/QA';
 import Profile from './Pages/Profile';
 import { ChakraProvider } from '@chakra-ui/react';
-import LoginForm from './Pages/LoginForm';
 import Signup from './Pages/Signup';
 import Friends from './Pages/Friends'
 import Requests from './Pages/Requests'
 import UserChat from './Pages/UserChats';
+import Login from './Pages/Login';
 
 
 function App() {
   return (
       <ChakraProvider>
         <Routes>
-        <Route path="login" element={<LoginForm/>} />
+        <Route path="login" element={<Login/>} />
         <Route path="signup" element={<Signup/>} />
         <Route path="/dash/*" element={<Layout/>}>
           <Route index element={<Home/>} />

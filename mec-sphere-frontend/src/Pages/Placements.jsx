@@ -26,7 +26,7 @@ function Placements() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <Flex  position="relative"  w={'80vw'} flexDirection={'column'} gap={2} p={2}>
+    <Flex  position="relative"  w={'80vw'} flexDirection={'column'} gap={2} p={2} >
       <Flex m={3}  justifyContent={'space-between'}>
         <Flex direction={'column'} flex={{ base: 1, md: 'unset' }}>
           <Flex gap={10}>

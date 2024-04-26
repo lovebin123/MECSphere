@@ -2,18 +2,43 @@ import { Avatar, Button, Flex, FormLabel, Input, InputGroup, InputRightAddon, Te
 import Topbar from '../Components/Profile/Topbar';
 import { FaSearch } from 'react-icons/fa';
 import Friendbox from '../Components/Profile/Friendbox';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import apiClient from "../services/api-client";
+import io from "socket.io-client";
+import AuthContext from "../contexts/AuthContext";
+
+const socket = io.connect("https://mecsphere.onrender.com");
 function Profile() {
-  const friends=[{id:1,username:'mary1',email:'mary1@gmail.com'},{id:2,username:'mary2',email:'mary2@gmail.com'},{id:3,username:'mary3',email:'mary3@gmail.com'},{id:4,username:'mary3',email:'mary3@gmail.com'},{id:5,username:'mary3',email:'mary3@gmail.com'}]
-  const [filteredFriends,setFilteredFriends] = useState(friends)
-  const handleSearch = (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        const filtered = friends.filter(
-            (friend) =>
-                friend.username.toLowerCase().includes(searchTerm)
-        );
-        setFilteredFriends(filtered);
+  
+  const [friends, setfriends] = useState([]);
+  const [filteredFriends,setFilteredFriends] = useState([])
+  const[chatter, setChatter] = useState({name: "", room: ""});
+  const { User, setUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    // Fetch users data from the API
+    const fetchFriends = async () => {
+      try {
+        const response = await apiClient.post("/user/friends", {id: User.id});
+        console.log(response.data);
+        setfriends(response.data);
+        setFilteredFriends(friends);
+        console.log(filteredFriends);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
     };
+    fetchFriends();
+  }, []);
+  
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const filtered = friends.filter(
+      (friend) =>
+        friend.name.toLowerCase().includes(searchTerm) // Update property name to 'name'
+    );
+    setFilteredFriends(filtered);
+  };
     
   return (
     <Flex position="relative" direction={'column'} maxH="100vh" w={'80vw'}>
@@ -46,7 +71,7 @@ function Profile() {
           <Flex direction={'column'} gap={3}  style={{ overflowY: 'auto', maxHeight: '49vh' }} >
             {
               (filteredFriends).map((friend)=>(
-                <Friendbox key={friend.id} username={friend.username} email={friend.email}/>
+                <Friendbox key={friend.id} username={friend.name} email={friend.email}/>
               ))
             }
           </Flex>

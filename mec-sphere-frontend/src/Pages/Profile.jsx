@@ -22,7 +22,7 @@ function Profile() {
         const response = await apiClient.post("/user/friends", {id: User.id});
         console.log(response.data);
         setfriends(response.data);
-        setFilteredFriends(friends);
+        setFilteredFriends(response.data);
         console.log(filteredFriends);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -71,7 +71,7 @@ function Profile() {
           <Flex direction={'column'} gap={3}  style={{ overflowY: 'auto', maxHeight: '49vh' }} >
             {
               (filteredFriends).map((friend)=>(
-                <Friendbox key={friend.id} username={friend.name} email={friend.email}/>
+                <Friendbox key={friend.id} username={friend.name} email={friend.email} userId = {friend._id}/>
               ))
             }
           </Flex>

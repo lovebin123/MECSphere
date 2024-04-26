@@ -27,9 +27,9 @@ import {
 import Draggable from "react-draggable";
 import ChatWindow from "./Chatwindow";
 import { useEffect, useState, useContext, useRef } from "react";
-import apiClient from "../services/api-client";
+import apiClient from "../../services/api-client";
 import io from "socket.io-client";
-import AuthContext from "../contexts/AuthContext";
+import AuthContext from "../../contexts/AuthContext";
 
 const socket = io.connect("https://mecsphere.onrender.com");
 
@@ -46,11 +46,12 @@ const Friendbox = (props) => {
     }
   };
 
-  const handleChatClick = (userid, email, name) => {
+  const handleChatClick = () => {
     // Handle chat button click
+    setShowChatbox(!showChatbox);
     apiClient
       .post("/user/chatrequest", {
-        friendid: userid,
+        friendid: props.userId,
         userid: User.id,
       })
       .then((response) => {
@@ -59,7 +60,8 @@ const Friendbox = (props) => {
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
-    setChatter({ name: name, room: User.email + email });
+      console.log(props);
+    setChatter({ name: props.username, room: User.email + props.email });
     joinRoom();
   };
 
@@ -81,7 +83,7 @@ const Friendbox = (props) => {
         Message
       </Button>
       {showChatbox && (
-        <ChatWindow userName={props.username} onClose={handleChatClick} />
+        <ChatWindow socket={socket} userName={props.username} room={chatter.room} onClose={handleChatClick} />
       )}
     </Flex>
   );

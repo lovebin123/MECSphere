@@ -1,27 +1,37 @@
 import { Avatar, Button, Flex, Text, HStack, Box, Heading, Stack, StackDivider, CardHeader, Card, CloseButton, CardBody, CardFooter, Input } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import Draggable from 'react-draggable';
 import ScrollToBottom from "react-scroll-to-bottom";
+import AuthContext from "../../contexts/AuthContext";
 
-const ChatWindow = ({ onClose, userName }) => {
+const ChatWindow = ({ onClose, userName, socket, room }) => {
+  
     const [currentMessage, setCurrentMessage] = useState("");
-    const [messageList, setMessageList] = useState([{ room: '12', author: 'you', message: 'hello' }, { room: '12', author: 'others', message: 'hello' }, { room: '12', author: 'others', message: 'how are you' }]);
+    const [messageList, setMessageList] = useState([]);
+    const { User, setUser } = useContext(AuthContext);
     const sendMessage = async () => {
         if (currentMessage !== "") {
             const messageData = {
-                room: '12',
-                author: 'you',
+                room: room,
+                author: userName === User.name ? "other" : "you",
                 message: currentMessage,
                 time:
                     new Date(Date.now()).getHours() +
                     ":" +
                     new Date(Date.now()).getMinutes(),
             };
+            await socket.emit("send_message", messageData);
             setMessageList((list) => [...list, messageData]);
             setCurrentMessage("");
         }
     };
+
+    useEffect(() => {
+        socket.on("receive_message", (data) => {
+          setMessageList((list) => [...list, data]);
+        });
+      }, [socket]);
 
 
 

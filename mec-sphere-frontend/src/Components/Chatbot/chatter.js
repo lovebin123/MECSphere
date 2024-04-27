@@ -1,10 +1,3 @@
-/*
-Lovebin document location =C:\\Users\\loveb\\Documents\\MECSphere\\mec-sphere-frontend\\src\\Components\\Chatbot\\docs1\\MECChat1.pdf
-Geo location =
-Mary location =
-Mahesh location=
-*/
-
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -71,7 +64,7 @@ function run(query) {
                     splittedDocs = _a.sent();
                     embeddings = new togetherai_1.TogetherAIEmbeddings({
                         apiKey: process.env.TOGETHER_AI_API_KEY, // Default value
-                        modelName: "togethercomputer/m2-bert-80M-32k-retrieval", // Default value
+                        model: "togethercomputer/m2-bert-80M-32k-retrieval", // Default value
                     });
                     return [4 /*yield*/, hnswlib_1.HNSWLib.fromDocuments(splittedDocs, embeddings)];
                 case 3:
@@ -79,9 +72,8 @@ function run(query) {
                     vectorStoreRetriever = vectorStore.asRetriever();
                     model = new togetherai_2.ChatTogetherAI({
                         temperature: 0.9,
-                        // In Node.js defaults to process.env.TOGETHER_AI_API_KEY
                         apiKey: process.env.TOGETHER_AI_API_KEY,
-                        modelName: 'meta-llama/Llama-3-70b-chat-hf'
+                        model: 'meta-llama/Llama-3-70b-chat-hf'
                     });
                     chain = chains_1.RetrievalQAChain.fromLLM(model, vectorStoreRetriever);
                     return [4 /*yield*/, chain.call({

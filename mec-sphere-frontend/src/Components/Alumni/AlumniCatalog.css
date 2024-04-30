@@ -1,0 +1,38 @@
+/* AlumniCatalog.css */
+
+/* Styles for the container of the alumni catalog */
+.alumni-catalog {
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  /* Styles for each individual alumni tile */
+  .alumni-tile {
+    width: 200px; /* Adjust width as needed */
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  /* Styles for the alumni image */
+  .alumni-image {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  /* Styles for the alumni name */
+  .alumni-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  /* Styles for the alumni job */
+  .alumni-job {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+  }
+  

@@ -1,17 +1,23 @@
 import { Avatar, Button, Divider, Flex, Text } from "@chakra-ui/react";
+import { useState } from "react";
 
 const Notification = (props) => {
+    const [accepted,setAccepted]=useState(false)
+    const handleAccept=()=>{
+        setAccepted(true)
+    }
     return (
-        <Flex direction={'column'} gap={2} mt={2}>
-            <Flex gap={5} alignItems={'center'} justifyContent={'space-between'}>
+        <Flex direction={'column'} gap={2} >
+            {accepted===true?props.type==='friendreq'?<Flex p={3} bgColor={'gray.100'}><Text>You are now friends with {props.name}</Text></Flex>:<Flex p={3} bgColor={'gray.100'}><Text>You can now chat with {props.name}</Text></Flex>:<Flex mt={2} p={1} gap={5} alignItems={'center'} justifyContent={'space-between'}>
                 <Flex alignItems={'center'} gap={1}>
                     <Text >{props.name}{props.msg}  </Text>
                 </Flex>
                 <Flex gap={1}>
-                    <Button colorScheme="green">Accept</Button>
+                    <Button colorScheme="green" onClick={handleAccept}>Accept</Button>
                     <Button colorScheme="red">Reject</Button>
                 </Flex>
             </Flex>
+            }
             <Divider />
         </Flex>
     );

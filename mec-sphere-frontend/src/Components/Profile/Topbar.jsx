@@ -12,13 +12,14 @@ const Topbar = () => {
                         <MenuButton isActive={isOpen} as={Button}>
                             <FaBell />
                         </MenuButton>
-                        <MenuList p={3}>
+                        <MenuList p={3} overflowY={'auto'} maxHeight={'60vh'}>
+                            <Text fontWeight={'semibold'} fontSize={'19'} mb={5}>Notifications</Text>
                             {
                                 chatReq.map((noti1)=>(
-                                    <Notification key={noti1.id} name={noti1.user} msg={" has requested to chat with you"}/>
+                                    <Notification key={noti1.id} type={'chatreq'} name={noti1.user} msg={" has requested to chat with you"}/>
                                 ))}{
                                 friendReq.map((noti2)=>(
-                                    <Notification key={noti2.id} name={noti2.user} msg={" has requested to be your friend"}/>
+                                    <Notification key={noti2.id} type={'friendreq'} name={noti2.user} msg={" has requested to be your friend"}/>
                                 ))
                             }
                         </MenuList>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home';
+import HomePage from './Pages/HomePage';
 import Layout from './Layout';
 import Placements from './Pages/Placements';
 import Alumniconnect from './Pages/Alumniconnect';
@@ -22,7 +22,7 @@ function App() {
         <Route path="login" element={<Login/>} />
         <Route path="signup" element={<Signup/>} />
         <Route path="/dash/*" element={<Layout/>}>
-          <Route index element={<Home/>} />
+          <Route index element={<HomePage/>} />
           <Route path="placements" element={<Placements/>} />
           <Route path="alumniconnect" element={<Alumniconnect/>} />
           <Route path="qa" element={<QA/>} />

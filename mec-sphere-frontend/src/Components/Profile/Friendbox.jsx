@@ -25,7 +25,7 @@ import {
 } from "@chakra-ui/react";
 
 import Draggable from "react-draggable";
-import ChatWindow from "./Chatwindow";
+import ChatWindow2 from "./CW2";
 import { useEffect, useState, useContext, useRef } from "react";
 import apiClient from "../../services/api-client";
 import io from "socket.io-client";
@@ -82,7 +82,7 @@ const Friendbox = (props) => {
         Message
       </Button>
       {showChatbox && (
-        <ChatWindow socket={socket} userName={props.username} room={chatter.room} onClose={handleChatClick} />
+        <ChatWindow2 socket={socket} userName={props.username} con='other' room={chatter.room} onClose={handleChatClick} />
       )}
     </Flex>
   );

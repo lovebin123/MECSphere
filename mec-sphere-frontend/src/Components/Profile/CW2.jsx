@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 import ScrollToBottom from "react-scroll-to-bottom";
 import AuthContext from "../../contexts/AuthContext";
 
-const ChatWindow = ({ onClose, userName, socket, room, con }) => {
+const ChatWindow2 = ({ onClose, userName, socket, room, con }) => {
   
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
@@ -59,7 +59,7 @@ const ChatWindow = ({ onClose, userName, socket, room, con }) => {
                 <CardBody overflowY={'auto'}>
                     <Flex direction="column" gap={3}>
                         {messageList.map((messageContent, index) => (
-                            <Flex w={'100%'}  justifyContent={messageContent.author === 'you' ? 'flex-end' : 'flex-start'} >
+                            <Flex w={'100%'}  justifyContent={messageContent.author !== 'you' ? 'flex-end' : 'flex-start'} >
                                 <Text color={'white'}  key={index} maxW={'60%'} borderRadius={10} p={3} bgColor={messageContent.author === 'you' ? 'rgba(105,101,219, 0.6)' : 'rgba(93,137,253, 0.6)'}>
                                     {messageContent.message}
                                 </Text>
@@ -86,6 +86,6 @@ const ChatWindow = ({ onClose, userName, socket, room, con }) => {
     );
 };
 
-export default ChatWindow;
+export default ChatWindow2;
 
 

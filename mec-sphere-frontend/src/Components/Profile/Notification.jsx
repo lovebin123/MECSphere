@@ -109,7 +109,8 @@ const Notification = (props) => {
       {showChatbox && (
         <ChatWindow
           socket={socket}
-          userName={User.name}
+          userName={props.name}
+          con="you"
           room={props.email + User.email}
           onClose={handleClsoe}
         />

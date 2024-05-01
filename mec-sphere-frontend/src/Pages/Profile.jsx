@@ -1,4 +1,4 @@
-import { Avatar, Button, Flex, FormLabel, Input, InputGroup, InputRightAddon, Text } from '@chakra-ui/react';
+import { Avatar, Badge, Button, Flex, FormLabel, Input, InputGroup, InputRightAddon, Text } from '@chakra-ui/react';
 import Topbar from '../Components/Profile/Topbar';
 import { FaSearch } from 'react-icons/fa';
 import Friendbox from '../Components/Profile/Friendbox';
@@ -45,8 +45,11 @@ function Profile() {
     <Flex position="relative" direction={'column'} maxH="100vh" w={'80vw'}>
       <Topbar />
       <Flex m={5} justifyContent={'space-between'}>
-        <Flex direction={'column'} w={'50%'} gap={5} mt={-14}>
-          <Avatar size={'2xl'} mb={5} ml={25}></Avatar>
+        <Flex direction={'column'} w={'50%'} gap={3} mt={-14}>
+          <Flex alignItems={'center'} gap={3}>
+            <Avatar size={'2xl'} mb={5} ml={25} outline={'15px solid white'}></Avatar>
+            <Badge variant={'outline'} fontSize={'16'} mb={5} ml={25}  color={'gray.600'} bgColor={'rgba(93,117,253, 0.3)'}>{User.role}</Badge>
+          </Flex>
           <Flex justifyContent={'space-between'}>
             <Flex direction={'column'}>
               <FormLabel>First Name</FormLabel>
@@ -57,8 +60,22 @@ function Profile() {
               <Input name="name" placeholder={User.lastname} />
             </Flex>
           </Flex>
+          <Flex justifyContent={'space-between'}>
+            <Flex direction={'column'}>
+              <FormLabel>Branch</FormLabel>
+              <Input name="name" placeholder={User.branch} />
+            </Flex>
+            <Flex direction={'column'}>
+              <FormLabel>Year of Graduation</FormLabel>
+              <Input name="name" placeholder={User.pass_out} />
+            </Flex>
+          </Flex>
+          <Flex direction={'column'}>
+            <FormLabel>Email Address</FormLabel>
+            <Input placeholder='maryannjose129@gmail.com' />
+          </Flex>
           
-          <Button colorScheme='teal' w={'25%'}>Save Changes</Button>
+          <Button bgColor={'rgba(93,117,253, 0.6)'} _hover={{bgColor:'rgba(93,117,253, 0.8)'}} color='white' w={'25%'} mt={5}>Save Changes</Button>
         </Flex>
         <Flex direction={'column'} p={5} w={'40%'} gap={3}>
           <Text fontSize={'20'} fontWeight={'semibold'}>Your Friends</Text>

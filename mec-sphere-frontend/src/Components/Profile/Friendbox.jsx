@@ -70,7 +70,7 @@ const Friendbox = (props) => {
       borderRadius={"20px"}
       p={3}
       boxShadow={"sm"}
-      border={"1.5px solid lightblue"}
+      border={"1.5px solid rgba(93,117,253, 0.3)"}
       alignItems={"center"}
       justifyContent={"space-between"}
     >
@@ -78,7 +78,7 @@ const Friendbox = (props) => {
         <Avatar size={"md"} />
         <Text>{props.username}</Text>
       </Flex>
-      <Button colorScheme="teal" onClick={handleChatClick}>
+      <Button bgColor={'rgba(93,117,253, 0.6)'} _hover={{bgColor:'rgba(93,117,253, 0.8)'}} color='white' onClick={handleChatClick}>
         Message
       </Button>
       {showChatbox && (

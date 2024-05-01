@@ -46,7 +46,7 @@ const Topbar = () => {
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
-    
+
     apiClient
       .post("/user/chatrequests", { id: User.id })
       .then((response) => {
@@ -62,7 +62,7 @@ const Topbar = () => {
     setUser({
       id: "",
       name: "",
-      token:'',
+      token: '',
       role: '',
       status: true,
       email: '',
@@ -71,10 +71,10 @@ const Topbar = () => {
     navigate("/");
   };
 
-  
+
   return (
     <Flex
-      bgColor={"blue.50"}
+      bgColor={"blue.100"}
       h={"120"}
       w={"100%"}
       alignItems={"center"}
@@ -82,41 +82,43 @@ const Topbar = () => {
       justifyContent={"end"}
       p={2}
     >
-      <Menu>
-        {({ isOpen }) => (
-          <>
-            <MenuButton isActive={isOpen} as={Button}>
-              <FaBell />
-            </MenuButton>
-            <MenuList p={3} overflowY={"auto"} maxHeight={"60vh"}>
-              <Text fontWeight={"semibold"} fontSize={"19"} mb={5}>
-                Notifications
-              </Text>
-              {requests.map((noti1) => (
-                <Notification
-                  key={noti1.id}
-                  type={"chatreq"}
-                  name={noti1.name}
-                  email={noti1.email}
-                  msg={" has requested to chat with you"}
-                />
-              ))}
-              {requests.map((noti2) => (
-                <Notification
-                  key={noti2.id}
-                  type={"friendreq"}
-                  name={noti2.name}
-                  freqid = {noti2.id}
-                  msg={" has requested to be your friend"}
-                />
-              ))}
-            </MenuList>
-          </>
-        )}
-      </Menu>
-      <Button colorScheme="teal" onClick={Logout}>
-        Logout
-      </Button>
+      <Flex gap={3} mr={3}>
+        <Menu>
+          {({ isOpen }) => (
+            <>
+              <MenuButton isActive={isOpen} as={Button}>
+                <FaBell />
+              </MenuButton>
+              <MenuList p={3} overflowY={"auto"} maxHeight={"60vh"}>
+                <Text fontWeight={"semibold"} fontSize={"19"} mb={5}>
+                  Notifications
+                </Text>
+                {requests.map((noti1) => (
+                  <Notification
+                    key={noti1.id}
+                    type={"chatreq"}
+                    name={noti1.name}
+                    email={noti1.email}
+                    msg={" has requested to chat with you"}
+                  />
+                ))}
+                {requests.map((noti2) => (
+                  <Notification
+                    key={noti2.id}
+                    type={"friendreq"}
+                    name={noti2.name}
+                    freqid={noti2.id}
+                    msg={" has requested to be your friend"}
+                  />
+                ))}
+              </MenuList>
+            </>
+          )}
+        </Menu>
+        <Button bgColor={'rgba(93,117,253, 0.6)'} _hover={{ bgColor: 'rgba(93,117,253, 0.8)' }} color={'white'} onClick={Logout}>
+          Logout
+        </Button>
+      </Flex>
     </Flex>
   );
 };

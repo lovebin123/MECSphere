@@ -47,7 +47,7 @@ const ChatWindow = ({ onClose, userName, socket, room }) => {
                 borderRadius="lg"
                 boxShadow="md"
                 zIndex={10}>
-                <CardHeader bgColor={'blue.100'} borderTopRightRadius={'lg'} borderTopLeftRadius={'lg'}>
+                <CardHeader bgColor={'rgba(105,101,219, 0.4)'} borderTopRightRadius={'lg'} borderTopLeftRadius={'lg'}>
                     <HStack justifyContent="space-between">
                         <HStack>
                             <Avatar mr={2} />

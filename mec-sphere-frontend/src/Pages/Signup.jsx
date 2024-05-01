@@ -1,14 +1,15 @@
 import { Button, Flex, FormControl, FormLabel, Heading, Input, Select, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import apiClient from "../services/api-client";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
+    lastname: "",
     email: "",
     password: "",
-    role: "",
+    role: "alumni",
   });
   const toast = useToast();
 
@@ -16,7 +17,10 @@ const Signup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const navigate = useNavigate();
+
   const submit = () => {
+    console.log(formData);
     apiClient
       .post("/user/sign", formData)
       .then((response) => {
@@ -28,6 +32,7 @@ const Signup = () => {
           position: 'top'
         });
       });
+      navigate("/dash")
   };
 
   return (
@@ -40,7 +45,7 @@ const Signup = () => {
         borderRadius={10}
         boxShadow="md"
         p={7}
-        gap={6}
+        gap={4}
       >
         <Heading as="h1" size="xl" textAlign="center" mb={6}>
           Sign Up
@@ -48,11 +53,11 @@ const Signup = () => {
         <Flex direction={"row"} gap={3}>
           <FormControl>
             <FormLabel>First Name</FormLabel>
-            <Input type="text" name="firstName" onChange={handleChange}></Input>
+            <Input type="text" name="name" onChange={handleChange}></Input>
           </FormControl>
           <FormControl>
             <FormLabel>Last Name</FormLabel>
-            <Input type="text" name="lastName" onChange={handleChange}></Input>
+            <Input type="text" name="lastname" onChange={handleChange}></Input>
           </FormControl>
         </Flex>
         <FormControl>
@@ -70,6 +75,22 @@ const Signup = () => {
               <option value="alumni">Alumni</option>
               <option value="student">Student</option>
             </Select>
+          </FormControl>
+        </Flex>
+        <Flex direction={"row"} gap={3}>
+          <FormControl>
+            <FormLabel>Branch</FormLabel>
+            <Select name="role" onChange={handleChange}>
+              <option value="alumni">CSE</option>
+              <option value="student">ECE</option>
+              <option value="student">EEE</option>
+              <option value="student">EBE</option>
+              <option value="student">Mech</option>
+            </Select>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Year of Graduation</FormLabel>
+            <Input type="text" name="lastName" onChange={handleChange}></Input>
           </FormControl>
         </Flex>
         <Button colorScheme="blue" onClick={submit}>

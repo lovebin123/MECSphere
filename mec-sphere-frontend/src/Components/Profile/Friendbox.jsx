@@ -38,7 +38,6 @@ const Friendbox = (props) => {
   const [showChatbox, setShowChatbox] = useState(false);
   const [chatter, setChatter] = useState({ name: "", room: "" });
   const { User, setUser } = useContext(AuthContext);
-  const firstFieldRef = useRef(null);
 
   const joinRoom = () => {
     if (chatter.name !== "" && chatter.room !== "") {

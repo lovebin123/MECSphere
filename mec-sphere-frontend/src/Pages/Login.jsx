@@ -36,6 +36,7 @@ export default function Login() {
                   role: response.data.role,
                   status: true,
                   email: response.data.email,
+                  friends: response.data.friends,
               });
               navigate("/dash");
           })
@@ -84,7 +85,7 @@ export default function Login() {
               </HStack>
               <Button colorScheme='blue' borderRadius='10px' bgColor='#5db1fd' onClick={handleSubmit}>Login</Button>
               <Text textAlign='center'>
-                  Don't have an account? <Button variant='link' color={'#5db1fd'} >Register now</Button>
+                  Don't have an account? <Button variant='link' color={'#5db1fd'} onClick={() => navigate("/signup")} >Register now</Button>
               </Text>
           </VStack>
       </Box>

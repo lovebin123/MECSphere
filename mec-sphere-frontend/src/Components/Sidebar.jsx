@@ -35,6 +35,7 @@ const Sidebar = () => {
             status: true,
             role: res.data.role,
             email: res.data.email,
+            friends: res.data.friends,
           });
       })
       .catch((err) => {

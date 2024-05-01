@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post("/sign", async (req, res, next) => {
-  const { email, password, name, role } = req.body;
+  const { email, password, name, role, lastname } = req.body;
 
   try {
     // Check if user with the given email already exists
@@ -33,6 +33,7 @@ router.post("/sign", async (req, res, next) => {
       email: email,
       name: name,
       role: role,
+      lastname: lastname,
       password: hash,
     });
 
@@ -63,7 +64,7 @@ router.post("/login", async (req, res, next) => {
     }
 
     const accessToken = sign(
-      { email: user.email, id: user.id, name: user.name },
+      { email: user.email, id: user.id, name: user.name, friends: user.friends, role: user.role, lastname: user.lastname},
       "shhhhh its a secret"
     );
 
@@ -71,8 +72,10 @@ router.post("/login", async (req, res, next) => {
       token: accessToken,
       name: user.name,
       role: user.role,
+      lastname: user.lastname,
       id: user.id,
       email: user.email,
+      friends: user.friends
     });
   } catch (err) {
     // Pass the error to the next middleware for centralized error handling

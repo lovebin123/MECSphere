@@ -6,7 +6,7 @@ import { useEffect, useState, useContext } from 'react';
 import apiClient from "../services/api-client";
 import io from "socket.io-client";
 import AuthContext from "../contexts/AuthContext";
-
+import { useNavigate } from 'react-router-dom';
 const socket = io.connect("https://mecsphere.onrender.com");
 function Profile() {
   
@@ -14,6 +14,7 @@ function Profile() {
   const [filteredFriends,setFilteredFriends] = useState([])
   const[chatter, setChatter] = useState({name: "", room: ""});
   const { User, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch users data from the API
@@ -49,17 +50,14 @@ function Profile() {
           <Flex justifyContent={'space-between'}>
             <Flex direction={'column'}>
               <FormLabel>First Name</FormLabel>
-              <Input name="name" placeholder='Mary Ann' />
+              <Input name="name" placeholder={User.name} />
             </Flex>
             <Flex direction={'column'}>
               <FormLabel>Last Name</FormLabel>
-              <Input name="name" placeholder='Jose' />
+              <Input name="name" placeholder={User.lastname} />
             </Flex>
           </Flex>
-          <Flex direction={'column'}>
-            <FormLabel>Email Address</FormLabel>
-            <Input placeholder='maryannjose129@gmail.com' />
-          </Flex>
+          
           <Button colorScheme='teal' w={'25%'}>Save Changes</Button>
         </Flex>
         <Flex direction={'column'} p={5} w={'40%'} gap={3}>

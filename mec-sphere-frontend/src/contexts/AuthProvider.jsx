@@ -9,6 +9,8 @@ const AuthProvider = ({ children }) => {
     role: "",
     email: "",
     status: false,
+    friends:[],
+    lastname:"",
   });
 
   return (

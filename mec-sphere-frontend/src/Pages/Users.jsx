@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import apiClient from "../services/api-client";
-import { Button, Flex, Text, HStack, InputGroup, Input, InputRightAddon } from "@chakra-ui/react";
+import { Button, Text, HStack, InputGroup, Input, InputRightAddon,Flex, Heading,Avatar } from "@chakra-ui/react";
 import io from "socket.io-client";
 import "./chat.css"
 import AuthContext from "../contexts/AuthContext";
@@ -61,7 +61,13 @@ function Users() {
       </Flex>
       <Flex gap={7} p={3} wrap={'wrap'}>
         {filteredUsers.map(user => (
-          <Usertile key={user._id} username={user.name} />
+          <Flex p={3} direction="column" gap={1} justifyContent="space-around" alignItems="center" borderRadius={10} boxShadow="md">
+            <Avatar size={'lg'} />
+            <Flex direction="column" p={4} gap={3} alignItems={'center'}>
+                <Heading fontSize="16" color="gray.700">{user.name}</Heading>
+                <Button borderRadius={'20'} onClick={()=>handleAddFriendClick(user._id)} color={'white'} bgColor={'rgba(100,138,242, 0.8)'} _hover={{bgColor:'rgba(100,138,242, 1)'}}>Add Friend</Button>
+            </Flex>
+        </Flex>
         ))}
       </Flex>
       {/*{users.map(user => (

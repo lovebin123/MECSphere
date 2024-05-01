@@ -14,7 +14,7 @@ function Users() {
   useEffect(() => {
     // Fetch users data from the API
     apiClient
-      .post("http://localhost:4000/user/requests", { id: User.id })
+      .post("/user/requests", { id: User.id })
       .then((response) => {
         console.log(response.data);
         setRequests(response.data);

@@ -4,7 +4,7 @@
 .heading{
     text-align: center;
     padding:2rem;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-family:'Poppins';
     font-weight: 650;
 }
@@ -30,13 +30,14 @@
 .about{
     text-align: center;
     font-family: 'Poppins';
+    font-weight: 400;
 }
 .info{
     color: grey;
     text-align: center;
 }
 .bttn{
-    padding: 1rem 1rem;
+    padding: 1rem 1.5rem;
     margin-top: 10px;
     background-color: #fd2d34;
     border: none;
@@ -63,6 +64,7 @@
     font-family: 'Poppins';
     text-align: center;
     font-size: 2rem;
+    font-weight:400;
 }
 
 

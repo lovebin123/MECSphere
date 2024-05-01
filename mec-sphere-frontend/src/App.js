@@ -13,12 +13,14 @@ import Friends from './Pages/Friends'
 import Requests from './Pages/Requests'
 import UserChat from './Pages/UserChats';
 import Login from './Pages/Login';
+import LandingPage from './Pages/LandingPage';
 
 
 function App() {
   return (
       <ChakraProvider>
         <Routes>
+        <Route path="/" element={<LandingPage/>} />
         <Route path="login" element={<Login/>} />
         <Route path="signup" element={<Signup/>} />
         <Route path="/dash/*" element={<Layout/>}>

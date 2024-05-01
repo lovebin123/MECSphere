@@ -19,7 +19,12 @@ const userModel = mongoose.model(
         type: "string",
         required: true,
     },
-
+    branch:{
+      type: "string",
+    },
+    year:{
+      type: "string",
+    },
     password: {
       type: "string",
       required: true,

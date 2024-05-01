@@ -24,6 +24,7 @@ const Topbar = () => {
   const { onOpen, onClose, isOpen } = useDisclosure();
   const [showChatbox, setShowChatbox] = useState(false);
   const [requests, setRequests] = useState([]);
+  const [chatRequests, setChatRequests] = useState([]);
   const [chatter, setChatter] = useState({ name: "", room: "" });
   const { User, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ const Topbar = () => {
       .post("/user/chatrequests", { id: User.id })
       .then((response) => {
         console.log(response.data);
-        setRequests(response.data);
+        setChatRequests(response.data);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
@@ -93,7 +94,7 @@ const Topbar = () => {
                 <Text fontWeight={"semibold"} fontSize={"19"} mb={5}>
                   Notifications
                 </Text>
-                {requests.map((noti1) => (
+                {chatRequests.map((noti1) => (
                   <Notification
                     key={noti1.id}
                     type={"chatreq"}

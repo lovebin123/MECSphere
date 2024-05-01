@@ -26,7 +26,7 @@ function Users() {
 
   const accept = async(requestId) => {
     try {
-        const response = await apiClient.post("http://localhost:4000/user/acceptrequest", {
+        const response = await apiClient.post("/user/acceptrequest", {
           requestid: requestId,
           userid: User.id,
         });

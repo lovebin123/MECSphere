@@ -22,22 +22,48 @@ const Notification = (props) => {
   const { User, setUser } = useContext(AuthContext);
 
   const joinRoom = () => {
-    if (props.name !== "" && (props.email+User.email) !== "") {
-      socket.emit("join_room", props.email+User.email);
+    if (props.name !== "" && props.email + User.email !== "") {
+      socket.emit("join_room", props.email + User.email);
     }
   };
   const handleAccept = () => {
     setAccepted(true);
     setShowChatbox(!showChatbox);
-    const st = props.email+User.email
+    const st = props.email + User.email;
     console.log(st);
-    setChatter({name: props.name, room: st});
+    setChatter({ name: props.name, room: st });
     console.log(chatter);
     joinRoom();
   };
-  const handleClsoe =()=>{
+  const handleClsoe = () => {
     setShowChatbox(!showChatbox);
-  }
+  };
+
+  const accept = async () => {
+    try {
+      const response = await apiClient.post("/user/acceptrequest", {
+        requestid: props.freqid,
+        userid: User.id,
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error rejecting friend request:", error);
+      throw error;
+    }
+  };
+
+  const reject = async (requestId) => {
+    try {
+      const response = await apiClient.post("/user/rejectrequest", {
+        requestid: requestId,
+        userid: User.id,
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error rejecting friend request:", error);
+      throw error;
+    }
+  };
 
   return (
     <Flex direction={"column"} gap={2}>
@@ -66,16 +92,27 @@ const Notification = (props) => {
             </Text>
           </Flex>
           <Flex gap={1}>
-            <Button colorScheme="green" onClick={handleAccept}>
+            <Button
+              colorScheme="green"
+              onClick={() => {
+                if (props.type === "friendreq") accept();
+                else handleAccept();
+              }}
+            >
               Accept
             </Button>
-            <Button colorScheme="red">Reject</Button>
+            <Button colorScheme="red" onClick={reject}>Reject</Button>
           </Flex>
         </Flex>
       )}
       <Divider />
       {showChatbox && (
-        <ChatWindow socket={socket} userName={User.name} room={props.email+User.email} onClose={handleClsoe} />
+        <ChatWindow
+          socket={socket}
+          userName={User.name}
+          room={props.email + User.email}
+          onClose={handleClsoe}
+        />
       )}
     </Flex>
   );

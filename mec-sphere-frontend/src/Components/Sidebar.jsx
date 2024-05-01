@@ -31,6 +31,8 @@ const Sidebar = () => {
           setUser({
             id: res.data.id,
             name: res.data.name,
+            user: res.data.user,
+            lastname: res.data.lastname,
             token: localStorage.getItem("token"),
             status: true,
             role: res.data.role,

@@ -11,6 +11,7 @@ const AuthProvider = ({ children }) => {
     status: false,
     friends:[],
     lastname:"",
+    user:{}
   });
 
   return (

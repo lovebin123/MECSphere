@@ -35,6 +35,7 @@ export default function Login() {
                   token: response.data.token,
                   role: response.data.role,
                   status: true,
+                  user: response.data.user,
                   email: response.data.email,
                   friends: response.data.friends,
               });

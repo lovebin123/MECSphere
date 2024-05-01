@@ -36,6 +36,17 @@ const Topbar = () => {
 
   useEffect(() => {
     // Fetch users data from the API
+
+    apiClient
+      .post("/user/requests", { id: User.id })
+      .then((response) => {
+        console.log(response.data);
+        setRequests(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+      });
+    
     apiClient
       .post("/user/chatrequests", { id: User.id })
       .then((response) => {
@@ -59,6 +70,8 @@ const Topbar = () => {
     });
     navigate("/");
   };
+
+  
   return (
     <Flex
       bgColor={"blue.50"}
@@ -88,11 +101,12 @@ const Topbar = () => {
                   msg={" has requested to chat with you"}
                 />
               ))}
-              {User.friends.map((noti2) => (
+              {requests.map((noti2) => (
                 <Notification
                   key={noti2.id}
                   type={"friendreq"}
                   name={noti2.name}
+                  freqid = {noti2.id}
                   msg={" has requested to be your friend"}
                 />
               ))}

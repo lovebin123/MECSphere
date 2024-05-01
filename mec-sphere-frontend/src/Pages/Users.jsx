@@ -29,6 +29,7 @@ function Users() {
   }, []);
 
   const handleAddFriendClick = async (friendId) => {
+    console.log(User.user.requests);
     try {
       const response = await apiClient.post("/user/request", {
         friendid: friendId,

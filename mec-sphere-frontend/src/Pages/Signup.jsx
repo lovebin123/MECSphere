@@ -25,6 +25,7 @@ const Signup = () => {
       .post("/user/sign", formData)
       .then((response) => {
         console.log(response);
+        navigate("/login")
       })
       .catch((error) => {
         toast({
@@ -32,7 +33,7 @@ const Signup = () => {
           position: 'top'
         });
       });
-      navigate("/dash")
+      
   };
 
   return (

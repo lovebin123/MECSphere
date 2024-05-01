@@ -72,7 +72,7 @@ function Profile() {
           </Flex>
           <Flex direction={'column'}>
             <FormLabel>Email Address</FormLabel>
-            <Input placeholder='maryannjose129@gmail.com' />
+            <Input placeholder={User.email} />
           </Flex>
           
           <Button bgColor={'rgba(93,117,253, 0.6)'} _hover={{bgColor:'rgba(93,117,253, 0.8)'}} color='white' w={'25%'} mt={5}>Save Changes</Button>

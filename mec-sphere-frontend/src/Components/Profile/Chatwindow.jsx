@@ -14,7 +14,7 @@ const ChatWindow = ({ onClose, userName, socket, room }) => {
         if (currentMessage !== "") {
             const messageData = {
                 room: room,
-                author: userName === User.name ? "other" : "you",
+                author: userName === User.name ? "you" : "other",
                 message: currentMessage,
                 time:
                     new Date(Date.now()).getHours() +

@@ -9,7 +9,7 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
-import { FaChevronRight, FaHome, FaUser } from "react-icons/fa";
+import { FaChevronRight, FaHome, FaQuestion, FaUser } from "react-icons/fa";
 import { IoRocketSharp, IoPeople } from "react-icons/io5";
 import { MdQuestionAnswer } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -165,6 +165,17 @@ const Sidebar = () => {
             >
               <FaUser />
               Chats
+            </Tab>
+            <Tab
+              as={Link}
+              to="/dash/questionpaper"
+              sx={{ borderRadius: "10px" }}
+              display={"flex"}
+              justifyContent={"start"}
+              gap={3}
+            >
+             <FaQuestion></FaQuestion>
+             Question Paper Repository
             </Tab>
           </TabList>
         </Tabs>

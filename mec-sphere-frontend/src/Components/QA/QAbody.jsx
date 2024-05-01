@@ -100,7 +100,7 @@ function QAbody() {
                 </Text>
               </Flex>
             </CardHeader>
-            <CardBody>{answer.ans}</CardBody>
+            <CardBody height={40}>{answer.ans}</CardBody>
             <CardFooter>
               <Button
                 position="absolute"

@@ -10,6 +10,8 @@ const Signup = () => {
     email: "",
     password: "",
     role: "alumni",
+    year:"",
+    branch:""
   });
   const toast = useToast();
 
@@ -81,7 +83,7 @@ const Signup = () => {
         <Flex direction={"row"} gap={3}>
           <FormControl>
             <FormLabel>Branch</FormLabel>
-            <Select name="role" onChange={handleChange}>
+            <Select name="branch" onChange={handleChange}>
               <option value="CSE">CSE</option>
               <option value="ECE">ECE</option>
               <option value="EEE">EEE</option>
@@ -91,7 +93,7 @@ const Signup = () => {
           </FormControl>
           <FormControl>
             <FormLabel>Year of Graduation</FormLabel>
-            <Input type="text" name="lastName" onChange={handleChange}></Input>
+            <Input type="text" name="year" onChange={handleChange}></Input>
           </FormControl>
         </Flex>
         <Button colorScheme="blue" onClick={submit}>

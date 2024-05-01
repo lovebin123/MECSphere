@@ -63,11 +63,11 @@ function Profile() {
           <Flex justifyContent={'space-between'}>
             <Flex direction={'column'}>
               <FormLabel>Branch</FormLabel>
-              <Input name="name" placeholder={User.branch} />
+              <Input name="name" placeholder={User.user.branch} />
             </Flex>
             <Flex direction={'column'}>
               <FormLabel>Year of Graduation</FormLabel>
-              <Input name="name" placeholder={User.year} />
+              <Input name="name" placeholder={User.user.year} />
             </Flex>
           </Flex>
           <Flex direction={'column'}>

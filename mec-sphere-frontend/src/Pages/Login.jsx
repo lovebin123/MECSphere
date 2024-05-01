@@ -20,34 +20,45 @@ export default function Login() {
   };
 
   const handleSubmit = (e) => {
-      e.preventDefault();
+    e.preventDefault();
 
-      apiClient
-          .post("/user/login", {
-              email: email,
-              password: password,
-          })
-          .then((response) => {
-              localStorage.setItem("token", response.data.token);
-              setUser({
-                  id: response.data.id,
-                  name: response.data.name,
-                  token: response.data.token,
-                  role: response.data.role,
-                  status: true,
-                  user: response.data.user,
-                  email: response.data.email,
-                  friends: response.data.friends,
-              });
-              navigate("/dash");
-          })
-          .catch((error) => {
-              alert(error);
-          });
+    apiClient
+        .post("/user/login", {
+            email: email,
+            password: password,
+        })
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                localStorage.setItem("token", response.data.token);
+                setUser({
+                    id: response.data.id,
+                    name: response.data.name,
+                    token: response.data.token,
+                    role: response.data.role,
+                    status: true,
+                    user: response.data.user,
+                    email: response.data.email,
+                    friends: response.data.friends,
+                });
+                navigate("/dash");
+            } else {
+                // Handle login failure, such as displaying an error message
+                console.error("Login failed");
+                // Optionally, you can navigate back to the login page
+                navigate("/login");
+            }
+        })
+        .catch((error) => {
+            // Handle login failure, such as displaying an error message
+            console.error("Login failed", error);
+            // Optionally, you can navigate back to the login page
+            navigate("/login");
+        });
 
-      setEmail("");
-      setPassword("");
-  };
+    setEmail("");
+    setPassword("");
+};
+
 
   return (
       <Box

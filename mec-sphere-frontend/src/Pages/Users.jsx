@@ -68,7 +68,6 @@ function Users() {
         friendid: friendId,
         userid: User.id,
       });
-      alert(response.data);
     } catch (error) {
       console.error("Error rejecting friend request:", error);
       throw error;

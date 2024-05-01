@@ -9,7 +9,7 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
-import { FaChevronRight, FaHome, FaQuestion, FaUser } from "react-icons/fa";
+import { FaChevronRight, FaHome, FaList, FaQuestion, FaUser } from "react-icons/fa";
 import { IoRocketSharp, IoPeople } from "react-icons/io5";
 import { MdQuestionAnswer } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -130,10 +130,10 @@ const Sidebar = () => {
               justifyContent={"start"}
               gap={3}
             >
-              <FaUser />
+              <FaList />
               Users
             </Tab>
-            <Tab
+            {/**<Tab
               as={Link}
               to="/dash/friends"
               sx={{ borderRadius: "10px" }}
@@ -165,7 +165,7 @@ const Sidebar = () => {
             >
               <FaUser />
               Chats
-            </Tab>
+  </Tab>**/}
           </TabList>
         </Tabs>
       </Flex>

@@ -62,10 +62,11 @@ function Users() {
       </Flex>
       <Flex gap={7} p={3} wrap={'wrap'}>
         {filteredUsers.map(user => (
-          <Flex p={3} direction="column" gap={1} justifyContent="space-around" alignItems="center" borderRadius={10} boxShadow="md">
+          <Flex p={3} direction="column" minW={'210'} border={"1.5px solid rgba(93,117,253, 0.3)"} gap={1} justifyContent="space-around" alignItems="center" borderRadius={10} boxShadow="md">
             <Avatar size={'lg'} />
             <Flex direction="column" p={4} gap={3} alignItems={'center'}>
-                <Heading fontSize="16" color="gray.700">{user.name}</Heading>
+                <Heading fontSize="18" color="gray.600">{user.name}</Heading>
+                <Text color={'gray.600'} fontWeight={'semibold'} >{User.branch}   |  MEC'{User.pass_out}</Text>
                 <Button borderRadius={'20'} onClick={()=>handleAddFriendClick(user._id)} color={'white'} bgColor={'rgba(100,138,242, 0.8)'} _hover={{bgColor:'rgba(100,138,242, 1)'}}>Add Friend</Button>
             </Flex>
         </Flex>

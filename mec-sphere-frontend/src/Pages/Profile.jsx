@@ -67,7 +67,7 @@ function Profile() {
             </Flex>
             <Flex direction={'column'}>
               <FormLabel>Year of Graduation</FormLabel>
-              <Input name="name" placeholder={User.pass_out} />
+              <Input name="name" placeholder={User.year} />
             </Flex>
           </Flex>
           <Flex direction={'column'}>

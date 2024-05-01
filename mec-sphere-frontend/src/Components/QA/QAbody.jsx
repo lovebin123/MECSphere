@@ -10,12 +10,14 @@ import {
   Image,
   Text,
   useDisclosure,
+  Avatar,
 } from "@chakra-ui/react";
 import "./QAbody.css";
 
 function QAbody() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [answers, setAnswers] = useState([]);
+  const [expandedAnswers, setExpandedAnswers] = useState({});
 
   useEffect(() => {
     axios
@@ -71,46 +73,52 @@ function QAbody() {
     setAnswers(newAnswers);
   };
 
+  const toggleExpand = (index) => {
+    setExpandedAnswers((prevExpanded) => ({
+      ...prevExpanded,
+      [index]: !prevExpanded[index],
+    }));
+  };
+
   return (
-    <Flex mt={12}>
-      <Flex gap={10} flexWrap="wrap">
+    <Flex mt={12} justifyContent="center">
+      <Flex gap={10} flexWrap="wrap" justifyContent="center">
         {answers.map((answer, index) => (
-          <Card
-            key={index}
-            maxW="2xl"
-            boxShadow="rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;"
-          >
-            <CardHeader>
-              <Image
-                w="60px"
-                h="60px"
-                marginTop={-35}
-                marginRight={20}
-                borderRadius={50}
-                src={
-                  index === 0
-                    ? "https://people.com/thmb/4nQ7-MjL_jCoW-JofmlUcCHabJs=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(599x0:601x2):format(webp)/new-dad-ed-sheeran-44dcff70fc8a40b1be722788d8253c25.jpg"
-                    : "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
-              />
-              <Flex direction="column" gap={5}>
-                <Text fontSize={10}>{timeAgo(answer.createdAt)}</Text>
-                <Text fontSize="large" fontWeight="bold" textAlign="center">
+          <Card key={index} w={"80%"} boxShadow="md" borderRadius="xl" border={"1.5px solid rgba(93,117,253, 0.3)"}>
+            <CardHeader >
+              <Avatar ml={5}/>
+              <Flex direction="column" gap={2}>
+                <Text ml={2} mt={1} fontSize="sm" color="gray.500">
+                  {timeAgo(answer.createdAt)}
+                </Text>
+                <Text fontSize="xl" fontWeight="bold" color={'gray.700'} textAlign="center">
                   {answer.question}
                 </Text>
               </Flex>
             </CardHeader>
-            <CardBody>{answer.ans}</CardBody>
+            <CardBody maxH={expandedAnswers[index] ? "none" : "150px"} overflow="hidden">
+              {answer.ans.length > 150 ? (
+                <React.Fragment>
+                  {expandedAnswers[index] ? (
+                    <div>{answer.ans}</div>
+                  ) : (
+                    <div>
+                      {answer.ans.substring(0, 150)}
+                      <Button onClick={() => toggleExpand(index)} size="sm" bgColor={'transparent'} _hover={{bgColor:'transparent'}} color="blue.500">
+                        ...Read More
+                      </Button>
+                    </div>
+                  )}
+                </React.Fragment>
+              ) : (
+                answer.ans
+              )}
+            </CardBody>
             <CardFooter>
               <Button
-                position="absolute"
                 onClick={() => toggleLove(index)}
-                right={1}
-                mt={-6}
-                colorScheme="none"
-                border="none"
-                className="btn"
-                color={answer.loved ? "red" : "gray"}
+                size="sm"
+                colorScheme={answer.loved ? "red" : "gray"}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -125,6 +133,7 @@ function QAbody() {
                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
                   />
                 </svg>
+                
               </Button>
             </CardFooter>
           </Card>
@@ -135,3 +144,4 @@ function QAbody() {
 }
 
 export default QAbody;
+

@@ -1,4 +1,13 @@
-import { Button, Flex, FormControl, FormLabel, Heading, Input, Select, useToast } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Select,
+  useToast,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import apiClient from "../services/api-client";
 import { useNavigate } from "react-router-dom";
@@ -10,8 +19,8 @@ const Signup = () => {
     email: "",
     password: "",
     role: "alumni",
-    year:"",
-    branch:""
+    year: "",
+    branch: "CSE",
   });
   const toast = useToast();
 
@@ -27,15 +36,14 @@ const Signup = () => {
       .post("/user/sign", formData)
       .then((response) => {
         console.log(response);
-        navigate("/login")
+        navigate("/login");
       })
       .catch((error) => {
         toast({
           title: error.message,
-          position: 'top'
+          position: "top",
         });
       });
-      
   };
 
   return (
@@ -43,8 +51,8 @@ const Signup = () => {
       <Flex
         w={"40vw"}
         direction={"column"}
-        border={['none', '1px']}
-        borderColor={['', 'gray.300']}
+        border={["none", "1px"]}
+        borderColor={["", "gray.300"]}
         borderRadius={10}
         boxShadow="md"
         p={7}
@@ -70,7 +78,11 @@ const Signup = () => {
         <Flex direction={"row"} gap={3}>
           <FormControl>
             <FormLabel>Password</FormLabel>
-            <Input type="password" name="password" onChange={handleChange}></Input>
+            <Input
+              type="password"
+              name="password"
+              onChange={handleChange}
+            ></Input>
           </FormControl>
           <FormControl>
             <FormLabel>Role</FormLabel>

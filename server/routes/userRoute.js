@@ -64,7 +64,7 @@ router.post("/login", async (req, res, next) => {
     }
 
     const accessToken = sign(
-      { email: user.email, id: user.id, name: user.name, friends: user.friends, role: user.role, lastname: user.lastname},
+      { email: user.email, id: user.id, name: user.name, friends: user.friends, role: user.role, lastname: user.lastname, user:user},
       "shhhhh its a secret"
     );
 
@@ -75,7 +75,8 @@ router.post("/login", async (req, res, next) => {
       lastname: user.lastname,
       id: user.id,
       email: user.email,
-      friends: user.friends
+      friends: user.friends,
+      user:user
     });
   } catch (err) {
     // Pass the error to the next middleware for centralized error handling

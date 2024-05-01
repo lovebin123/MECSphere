@@ -75,7 +75,6 @@ function Profile() {
             <Input placeholder={User.email} />
           </Flex>
           
-          <Button bgColor={'rgba(93,117,253, 0.6)'} _hover={{bgColor:'rgba(93,117,253, 0.8)'}} color='white' w={'25%'} mt={5}>Save Changes</Button>
         </Flex>
         <Flex direction={'column'} p={5} w={'40%'} gap={3}>
           <Text fontSize={'20'} fontWeight={'semibold'}>Your Friends</Text>

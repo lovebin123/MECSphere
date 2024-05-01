@@ -42,7 +42,7 @@ const ChatWindow = ({ onClose, userName, socket, room }) => {
                 right="50px"
                 top="50px"
                 h={'450'}
-                maxW={'400'}
+                minW={'400'}
                 background="white"
                 borderRadius="lg"
                 boxShadow="md"

@@ -84,14 +84,8 @@ function QA() {
           />
           <Flex direction={"column"} alignItems={"flex-start"} gap={4} w={'100%'}>
             <Input w={'80%'} color={"gray"} cursor={"pointer"} />
-            <Button  colorScheme="blue">
-              <Flex>
-                <Image
-                  src="https://img.icons8.com/material-outlined/96/ask-question.png"
-                  w={6}
-                />
-                <Text color={'black'}>Ask</Text>
-              </Flex>
+            <Button w={75} bgColor={'rgba(93,117,253, 0.6)'} _hover={{bgColor:'rgba(93,117,253, 0.8)'}} color='white'>
+               Ask
             </Button>
           </Flex>
         </Flex>

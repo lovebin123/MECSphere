@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Button,
   Container,
@@ -23,11 +23,12 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import QAbody from "../Components/QA/QAbody";
 import QAquestions from "../Components/QA/QAquestions";
 import apiClient from "../services/api-client";
+import AuthContext from "../contexts/AuthContext";
 
 function QA() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [question, setQuestion] = useState("");
-
+  const { User, setUser } = useContext(AuthContext);
   const handleInputChange = (e) => {
     setQuestion(e.target.value);
   };
@@ -40,7 +41,7 @@ function QA() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          user: "sam",
+          user: User.name+" "+User.lastname,
           description: question,
         }),
       });
@@ -74,22 +75,22 @@ function QA() {
         onClick={onOpen}
         cursor={"pointer"}
       >
-        <Flex gap={1}>
+        <Flex gap={1} p={3} w={'100%'}>
           <Image
             src="https://img.icons8.com/color/48/circled-user-male-skin-type-3--v1.png"
             w={"45px"}
             h={"45px"}
             mt={"-2"}
           />
-          <Flex direction={"column"} alignItems={"flex-start"} gap={4}>
-            <Input h={8} width={"28rem"} color={"gray"} cursor={"pointer"} />
-            <Button  bgColor={"#5db1fd"}>
+          <Flex direction={"column"} alignItems={"flex-start"} gap={4} w={'100%'}>
+            <Input w={'80%'} color={"gray"} cursor={"pointer"} />
+            <Button  colorScheme="blue">
               <Flex>
                 <Image
                   src="https://img.icons8.com/material-outlined/96/ask-question.png"
                   w={6}
                 />
-                <Text>Ask</Text>
+                <Text color={'black'}>Ask</Text>
               </Flex>
             </Button>
           </Flex>

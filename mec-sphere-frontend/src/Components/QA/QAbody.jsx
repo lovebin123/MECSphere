@@ -86,7 +86,7 @@ function QAbody() {
         {answers.map((answer, index) => (
           <Card key={index} w={"80%"} boxShadow="md" borderRadius="xl" border={"1.5px solid rgba(93,117,253, 0.3)"}>
             <CardHeader >
-              <Avatar ml={5}/>
+              <Avatar ml={5} />
               <Flex direction="column" gap={2}>
                 <Text ml={2} mt={1} fontSize="sm" color="gray.500">
                   {timeAgo(answer.createdAt)}
@@ -100,11 +100,16 @@ function QAbody() {
               {answer.ans.length > 150 ? (
                 <React.Fragment>
                   {expandedAnswers[index] ? (
-                    <div>{answer.ans}</div>
+                    <div>
+                      {answer.ans}
+                      <Button onClick={() => toggleExpand(index)} size="sm" bgColor={'transparent'} _hover={{ bgColor: 'transparent' }} color="blue.500">
+                        Collapse
+                      </Button>
+                    </div>
                   ) : (
                     <div>
                       {answer.ans.substring(0, 150)}
-                      <Button onClick={() => toggleExpand(index)} size="sm" bgColor={'transparent'} _hover={{bgColor:'transparent'}} color="blue.500">
+                      <Button onClick={() => toggleExpand(index)} size="sm" bgColor={'transparent'} _hover={{ bgColor: 'transparent' }} color="blue.500">
                         ...Read More
                       </Button>
                     </div>
@@ -113,6 +118,7 @@ function QAbody() {
               ) : (
                 answer.ans
               )}
+
             </CardBody>
             <CardFooter>
               <Button
@@ -133,7 +139,7 @@ function QAbody() {
                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
                   />
                 </svg>
-                
+
               </Button>
             </CardFooter>
           </Card>

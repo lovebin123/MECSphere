@@ -121,7 +121,7 @@ function Users() {
                     {user.name}
                   </Heading>
                   <Text color={"gray.600"} fontWeight={"semibold"}>
-                    {User.branch} | MEC'{User.pass_out}
+                    {User.branch} | MEC'{User.year}
                   </Text>
                   <Button
                     borderRadius={"20"}

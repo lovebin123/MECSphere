@@ -39,7 +39,7 @@ function Placements() {
             </Flex>
             <Flex gap={2} pt={10} h={160} w={{ base: '70%', md: '40%' }} boxShadow={'sm'} bgColor={'teal.100'} borderRadius={10} p={4} direction={'column'} ml={3} >
               <Text fontWeight={'semibold'}>Highest Package</Text>
-              <Heading fontSize={25}>55 LPA</Heading>
+              <Heading fontSize={25}>52 LPA</Heading>
               <Image src={high} h={100} w={100} mt={-39} />
             </Flex>
           </Flex>

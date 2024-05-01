@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Center, Divider, Textarea } from '@chakra-ui/react';
+import { ButtonGroup, Center, Divider, Textarea } from '@chakra-ui/react';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from '@chakra-ui/react';
 import { Button, Flex, Text, useDisclosure, useToast } from '@chakra-ui/react';
 import QAtable from './QAtable';
 import axios from 'axios';
-
+import { FaEdit } from 'react-icons/fa';
 function QAquestions() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [textValue, setTextValue] = useState(""); // State variable to store textarea content
@@ -29,7 +29,7 @@ function QAquestions() {
 
     const handleTextareaChange = (event) => {
         setTextValue(event.target.value); // Update the state variable with textarea content
-        
+
     };
 
     const handleOpenModal = (question) => {
@@ -42,7 +42,7 @@ function QAquestions() {
         const data = {
             user: 'sam',
             qid: qidd,
-            ans:textValue
+            ans: textValue
         }
         axios.post('https://mecsphere.onrender.com/answers/add', data).then((response) => {
             // Update questions state after posting the answer
@@ -79,36 +79,24 @@ function QAquestions() {
             <Flex direction={'column'} gap={5}>
 
                 {questions.map((question) => (
-                    <React.Fragment key={question._id}>
-                        <Center>
-                            <Divider w={'40vw'} borderColor={'blue.200'} />
-                        </Center>
-                        <Text textAlign={'center'} fontWeight={'bold'} fontSize={'xl'}>
-                            {question.description}
-                        </Text>
-                        <Flex justifyContent={'center'} direction={'row'} alignItems={'center'} gap={10}>
-                            <Button onClick={() => {handleOpenModal(question.description); setQid(question._id)}} bgColor='#5db1fd'>
-                                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <g stroke-width="1.5" fill="none" fill-rule="evenodd">
-                                        <path d="M18.571 5.429h0a2 2 0 0 1 0 2.828l-9.9 9.9-4.24 1.416 1.412-4.245 9.9-9.9h0a2 2 0 0 1 2.828 0Z" class="icon_svg-stroke" stroke="#666" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path class="icon_svg-fill_as_stroke" fill="#666" d="m4.429 19.571 2.652-.884-1.768-1.768z"></path>
-                                        <path d="M14.5 19.5h5v-5m-10-10h-5v5" class="icon_svg-stroke" stroke="#666" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </g>
-                                </svg>
-                                <Text textColor={'black'}>
-                                    Answer
-                                </Text>
-                            </Button>
-                            <Text fontSize={'10'}>
-                                asked {question.time} ago by <b>{question.user}</b>
+                    <Flex p={4} direction={'column'} boxShadow="md" borderRadius="xl" border={"1.5px solid rgba(93,117,253, 0.3)"}>
+                        <React.Fragment key={question._id}>
+                            <Text textAlign={'center'} fontWeight={'bold'} fontSize={'xl'} mb={5}>
+                                {question.description}
                             </Text>
+                            <Flex justifyContent={'center'} direction={'row'} alignItems={'center'} gap={10}>
+                                <ButtonGroup>
+                                    <Button bgColor={'rgba(93,117,253, 0.6)'} _hover={{bgColor:'rgba(93,117,253, 0.8)'}} color='white' leftIcon={<FaEdit/>} onClick={() => { handleOpenModal(question.description); setQid(question._id) }}>
+                                            Answer
+                                    </Button>
+                                </ButtonGroup>
+                                <Text fontSize={'10'} >
+                                    asked {question.time} ago by <b>{question.user}</b>
+                                </Text>
 
-                        </Flex>
-
-                        <Center>
-                            <Divider w={'40vw'} borderColor={'blue.200'} />
-                        </Center>
-                    </React.Fragment>
+                            </Flex>
+                        </React.Fragment>
+                    </Flex>
                 ))}
 
                 <Modal isOpen={isOpen} onClose={onClose}>
@@ -131,7 +119,6 @@ function QAquestions() {
                 </Modal>
 
             </Flex>
-            <QAtable />
         </Flex>
     );
 }

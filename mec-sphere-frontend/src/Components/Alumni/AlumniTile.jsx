@@ -7,54 +7,16 @@ import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
 
 const AlumniTile = ({ alumni }) => {
     return (
-        <Flex
-            cursor="pointer"
-            position="relative"
-            w="16vw"
-            p={3}
-            direction="column"
-            gap={1}
-            justifyContent="space-around"
-            alignItems="center"
-            borderRadius={10}
-            boxShadow="md"
-        >
-            <Avatar size='lg'/>
-            <Flex direction="column" w={200} pl={7} pt={3} pb={4} gap={2}>
-                
-                <Flex justifyContent="space-between">
-                    <Flex direction="column">
-                        <Heading fontSize="16" color="gray.700" textAlign='center'>
-                            {alumni.name}
-                        </Heading>
-                        <Badge
-                    maxW="max-content"
-                    display="flex"
-                    alignItems="center"
-                    gap="1"
-                    colorScheme="green"
-                >
-                    <FaStar />
-                    {alumni.job}
-                </Badge>
-                        {/* Optional: You can display additional details about the alumni here */}
-                        <Text fontSize="12" fontWeight="semibold" color="gray.600">
-                            {/* Additional details */}
-                        </Text>
-                    </Flex>
-                    {/* Optional: You can display additional information here */}
+        <Flex p={3} minW={210} direction="column" border={"1.5px solid rgba(93,117,253, 0.3)"}  gap={1} justifyContent="space-around" alignItems="center" borderRadius={10} boxShadow="md">
+            <Avatar size={'lg'} />
+            <Flex direction="column" p={4} gap={3} alignItems={'center'}>
+                <Heading fontSize="18" color="gray.600">{alumni.name}</Heading>
+                <Badge  color={'gray.600'} bgColor={'rgba(93,117,253, 0.3)'}>{alumni.job}</Badge>
+                <Flex>
+                    <Text color={'gray.600'} fontWeight={'semibold'} >{alumni.branch}   |  MEC'{alumni.pass_out}</Text>
                 </Flex>
+                <Button mt={2} borderRadius={'20'} color={'white'} bgColor={'rgba(100,138,242, 0.8)'} _hover={{bgColor:'rgba(100,138,242, 1)'}}>Add Friend</Button>
             </Flex>
-            <Link to={`/alumni/${alumni.id}`}>
-                <Button
-                    _hover={{ bgColor: "green.200" }}
-                    size="sm"
-                    bgColor="green.100"
-                    borderRadius={10}
-                >
-                    View Details
-                </Button>
-            </Link>
         </Flex>
     );
 }

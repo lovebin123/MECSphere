@@ -11,10 +11,10 @@ const AlumniCatalog = ({}) => {
     };
 
     const [alumniData, setAlumniData] = useState([
-        { id: 1, name: "John Doe", image: "src/assets/john-img.png", job: "Software Engineer", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod vehicula sem, at ullamcorper elit sodales nec." },
-        { id: 2, name: "Alice Smith", image: "src/assets/alice-img.png", job: "Graphic Designer", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod vehicula sem, at ullamcorper elit sodales nec." },
-        { id: 3, name: "Michael Brown", image: "src/assets/michael-img.png", job: "Marketing Manager", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod vehicula sem, at ullamcorper elit sodales nec." },
-        { id: 4, name: "Emily Johnson", image: "src/assets/emily-img.png", job: "Project Manager", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod vehicula sem, at ullamcorper elit sodales nec." },
+        { id: 1, name: "John Doe", image: "src/assets/john-img.png", job: "Software Engineer", branch:'ECE',pass_out:'2015' },
+        { id: 2, name: "Alice Smith", image: "src/assets/alice-img.png", job: "Graphic Designer",  branch:'CSE',pass_out:'2011' },
+        { id: 3, name: "Michael Brown", image: "src/assets/michael-img.png", job: "Marketing Manager", branch:'EEE',pass_out:'2008' },
+        { id: 4, name: "Emily Johnson", image: "src/assets/emily-img.png", job: "Project Manager", branch:'CSE',pass_out:'2011' },
         /*{ id: 5, name: "David Lee", image: "src/assets/david-img.png", job: "Data Scientist", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod vehicula sem, at ullamcorper elit sodales nec." }*/
     ]);
 

@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post("/sign", async (req, res, next) => {
-  const { email, password, name, role, lastname } = req.body;
+  const { email, password, name, role, lastname,year,branch } = req.body;
 
   try {
     // Check if user with the given email already exists
@@ -33,6 +33,8 @@ router.post("/sign", async (req, res, next) => {
       email: email,
       name: name,
       role: role,
+      year: year,
+      branch: branch,
       lastname: lastname,
       password: hash,
     });

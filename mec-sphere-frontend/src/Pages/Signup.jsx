@@ -82,11 +82,11 @@ const Signup = () => {
           <FormControl>
             <FormLabel>Branch</FormLabel>
             <Select name="role" onChange={handleChange}>
-              <option value="alumni">CSE</option>
-              <option value="student">ECE</option>
-              <option value="student">EEE</option>
-              <option value="student">EBE</option>
-              <option value="student">Mech</option>
+              <option value="CSE">CSE</option>
+              <option value="ECE">ECE</option>
+              <option value="EEE">EEE</option>
+              <option value="RBE">EBE</option>
+              <option value="Mech">Mech</option>
             </Select>
           </FormControl>
           <FormControl>

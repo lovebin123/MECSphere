@@ -2,7 +2,7 @@
 import axios, { CanceledError } from 'axios';
 
 export default axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: 'https://mecsphere.onrender.com',
 })
 
 export { CanceledError };

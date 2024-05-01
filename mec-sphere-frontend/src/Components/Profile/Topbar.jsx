@@ -88,14 +88,14 @@ const Topbar = () => {
                   msg={" has requested to chat with you"}
                 />
               ))}
-              {/* {friendReq.map((noti2) => (
+              {User.friends.map((noti2) => (
                 <Notification
                   key={noti2.id}
                   type={"friendreq"}
-                  name={noti2.user}
+                  name={noti2.name}
                   msg={" has requested to be your friend"}
                 />
-              ))} */}
+              ))}
             </MenuList>
           </>
         )}

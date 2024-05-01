@@ -165,18 +165,7 @@ const Sidebar = () => {
             >
               <FaUser />
               Chats
-            </Tab>
-            <Tab
-              as={Link}
-              to="/dash/questionpaper"
-              sx={{ borderRadius: "10px" }}
-              display={"flex"}
-              justifyContent={"start"}
-              gap={3}
-            >
-             <FaQuestion></FaQuestion>
-             Question Paper Repository
-            </Tab>
+            </Tab>   
           </TabList>
         </Tabs>
       </Flex>

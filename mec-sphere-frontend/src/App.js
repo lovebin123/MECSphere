@@ -14,7 +14,6 @@ import Requests from './Pages/Requests'
 import UserChat from './Pages/UserChats';
 import Login from './Pages/Login';
 import LandingPage from './Pages/LandingPage';
-import PdfViewer from './Components/PDFViewer/pdf';
 
 function App() {
   return (
@@ -28,13 +27,11 @@ function App() {
           <Route path="placements" element={<Placements/>} />
           <Route path="alumniconnect" element={<Alumniconnect/>} />
           <Route path="qa" element={<QA/>} />
-          
           <Route path='profile' element={<Profile/>} />
           <Route path='users' element={<Users/>} />
           <Route path='friends' element={<Friends/>} />
           <Route path='requests' element={<Requests/>} />
           <Route path='chat' element={<UserChat/>} />
-          <Route path='questionpaper' element={<PdfViewer/>}/>
         </Route>
       </Routes>
       </ChakraProvider>

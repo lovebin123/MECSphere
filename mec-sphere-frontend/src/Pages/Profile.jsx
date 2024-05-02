@@ -40,6 +40,7 @@ function Profile() {
     );
     setFilteredFriends(filtered);
   };
+  
     
   return (
     <Flex position="relative" direction={'column'} maxH="100vh" w={'80vw'}>

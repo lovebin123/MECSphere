@@ -28,7 +28,11 @@ export default function Login() {
             password: password,
         })
         .then((response) => {
-            if (response.status >= 200 && response.status < 300) {
+            if(response.data.error){
+                alert(response.data.error)
+                
+            }
+            else if (response.status >= 200 && response.status < 300) {
                 localStorage.setItem("token", response.data.token);
                 setUser({
                     id: response.data.id,

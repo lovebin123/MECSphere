@@ -10,7 +10,7 @@ import { ChatTogetherAI } from "@langchain/community/chat_models/togetherai";
 
 export async function run(query) {
   try {
-    const loader = new PDFLoader("C:\\Users\\loveb\\Documents\\MECSphere\\mec-sphere-frontend\\src\\Components\\Chatbot\\docs1\\MECChat1.pdf");
+    const loader = new PDFLoader("C:\\Users\\loveb\\Documents\\react\\MECSphere\\mec-sphere-frontend\\src\\Components\\Chatbot\\docs1\\MECChat1.pdf");
     const docs = await loader.load();
 
     const splitter = new RecursiveCharacterTextSplitter({

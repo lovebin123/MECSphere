@@ -76,7 +76,7 @@ function QAquestions() {
 
     return (
         <Flex direction={'row'} justifyContent={'space-evenly'}>
-            <Flex direction={'column'} gap={5}>
+            <Flex direction={'column-reverse'} gap={5}>
 
                 {questions.map((question) => (
                     <Flex p={4} direction={'column'} boxShadow="md" borderRadius="xl" border={"1.5px solid rgba(93,117,253, 0.3)"}>

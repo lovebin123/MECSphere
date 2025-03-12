@@ -7,7 +7,13 @@ const AuthContext = React.createContext({
         token: null,
         status: false,
         role:"",
-        email: ""
+        email: "",
+        friends:[],
+        lastname:"",
+        user:{},
+        year:"",
+        branch:""
+
     },
     setUser: () => {} // Default setter function
 });

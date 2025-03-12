@@ -6,6 +6,10 @@ const userModel = mongoose.model(
       type: "string",
       required: true,
     },
+    lastname: {
+      type: "string",
+      required: true,
+    },
     email: {
       type: "string",
       unique: true,
@@ -15,7 +19,12 @@ const userModel = mongoose.model(
         type: "string",
         required: true,
     },
-
+    branch:{
+      type: "string",
+    },
+    year:{
+      type: "string",
+    },
     password: {
       type: "string",
       required: true,

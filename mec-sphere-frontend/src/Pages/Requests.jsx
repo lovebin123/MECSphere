@@ -14,7 +14,7 @@ function Users() {
   useEffect(() => {
     // Fetch users data from the API
     apiClient
-      .post("http://localhost:4000/user/requests", { id: User.id })
+      .post("/user/requests", { id: User.id })
       .then((response) => {
         console.log(response.data);
         setRequests(response.data);
@@ -26,7 +26,7 @@ function Users() {
 
   const accept = async(requestId) => {
     try {
-        const response = await apiClient.post("http://localhost:4000/user/acceptrequest", {
+        const response = await apiClient.post("/user/acceptrequest", {
           requestid: requestId,
           userid: User.id,
         });

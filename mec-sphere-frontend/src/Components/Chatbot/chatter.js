@@ -51,7 +51,7 @@ function run(query) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 5, , 6]);
-                    loader = new pdf_1.PDFLoader("C:\\Users\\loveb\\Documents\\MECSphere\\mec-sphere-frontend\\src\\Components\\Chatbot\\docs1\\MECChat1.pdf");
+                    loader = new pdf_1.PDFLoader("C:\\Users\\loveb\\Documents\\react\\MECSphere\\mec-sphere-frontend\\src\\Components\\Chatbot\\docs1\\MECChat1.pdf");
                     return [4 /*yield*/, loader.load()];
                 case 1:
                     docs = _a.sent();
@@ -64,7 +64,7 @@ function run(query) {
                     splittedDocs = _a.sent();
                     embeddings = new togetherai_1.TogetherAIEmbeddings({
                         apiKey: process.env.TOGETHER_AI_API_KEY, // Default value
-                        modelName: "togethercomputer/m2-bert-80M-32k-retrieval", // Default value
+                        model: "togethercomputer/m2-bert-80M-32k-retrieval", // Default value
                     });
                     return [4 /*yield*/, hnswlib_1.HNSWLib.fromDocuments(splittedDocs, embeddings)];
                 case 3:
@@ -72,9 +72,8 @@ function run(query) {
                     vectorStoreRetriever = vectorStore.asRetriever();
                     model = new togetherai_2.ChatTogetherAI({
                         temperature: 0.9,
-                        // In Node.js defaults to process.env.TOGETHER_AI_API_KEY
                         apiKey: process.env.TOGETHER_AI_API_KEY,
-                        modelName: 'meta-llama/Llama-3-70b-chat-hf'
+                        model: 'meta-llama/Llama-3-70b-chat-hf'
                     });
                     chain = chains_1.RetrievalQAChain.fromLLM(model, vectorStoreRetriever);
                     return [4 /*yield*/, chain.call({

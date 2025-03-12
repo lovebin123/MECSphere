@@ -26,7 +26,7 @@ function Placements() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <Flex  position="relative"  w={'80vw'} flexDirection={'column'} gap={2} p={2}>
+    <Flex  position="relative"  w={'80vw'} flexDirection={'column'} gap={2} p={2} >
       <Flex m={3}  justifyContent={'space-between'}>
         <Flex direction={'column'} flex={{ base: 1, md: 'unset' }}>
           <Flex gap={10}>
@@ -39,7 +39,7 @@ function Placements() {
             </Flex>
             <Flex gap={2} pt={10} h={160} w={{ base: '70%', md: '40%' }} boxShadow={'sm'} bgColor={'teal.100'} borderRadius={10} p={4} direction={'column'} ml={3} >
               <Text fontWeight={'semibold'}>Highest Package</Text>
-              <Heading fontSize={25}>55 LPA</Heading>
+              <Heading fontSize={25}>52 LPA</Heading>
               <Image src={high} h={100} w={100} mt={-39} />
             </Flex>
           </Flex>

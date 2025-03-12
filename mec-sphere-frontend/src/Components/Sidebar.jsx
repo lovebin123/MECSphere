@@ -9,7 +9,7 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
-import { FaChevronRight, FaHome, FaUser } from "react-icons/fa";
+import { FaChevronRight, FaHome, FaList, FaQuestion, FaUser } from "react-icons/fa";
 import { IoRocketSharp, IoPeople } from "react-icons/io5";
 import { MdQuestionAnswer } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -31,10 +31,13 @@ const Sidebar = () => {
           setUser({
             id: res.data.id,
             name: res.data.name,
+            user: res.data.user,
+            lastname: res.data.lastname,
             token: localStorage.getItem("token"),
             status: true,
             role: res.data.role,
             email: res.data.email,
+            friends: res.data.friends,
           });
       })
       .catch((err) => {
@@ -127,10 +130,10 @@ const Sidebar = () => {
               justifyContent={"start"}
               gap={3}
             >
-              <FaUser />
+              <FaList />
               Users
             </Tab>
-            <Tab
+            {/**<Tab
               as={Link}
               to="/dash/friends"
               sx={{ borderRadius: "10px" }}
@@ -162,7 +165,7 @@ const Sidebar = () => {
             >
               <FaUser />
               Chats
-            </Tab>
+  </Tab>**/}
           </TabList>
         </Tabs>
       </Flex>

@@ -10,7 +10,7 @@ import { ChatTogetherAI } from "@langchain/community/chat_models/togetherai";
 
 export async function run(query) {
   try {
-    const loader = new PDFLoader("C:\\Users\\loveb\\Documents\\MECSphere\\mec-sphere-frontend\\src\\Components\\Chatbot\\docs1\\MECChat1.pdf");
+    const loader = new PDFLoader("C:\\Users\\loveb\\Documents\\react\\MECSphere\\mec-sphere-frontend\\src\\Components\\Chatbot\\docs1\\MECChat1.pdf");
     const docs = await loader.load();
 
     const splitter = new RecursiveCharacterTextSplitter({
@@ -21,7 +21,7 @@ export async function run(query) {
 
     const embeddings = new TogetherAIEmbeddings({
       apiKey: process.env.TOGETHER_AI_API_KEY, // Default value
-      modelName: "togethercomputer/m2-bert-80M-32k-retrieval", // Default value
+      model: "togethercomputer/m2-bert-80M-32k-retrieval", // Default value
     });
     const vectorStore = await HNSWLib.fromDocuments(splittedDocs, embeddings);
     const vectorStoreRetriever = vectorStore.asRetriever();
@@ -29,10 +29,10 @@ export async function run(query) {
     
     const model = new ChatTogetherAI({
       temperature: 0.9,
-      // In Node.js defaults to process.env.TOGETHER_AI_API_KEY
       apiKey: process.env.TOGETHER_AI_API_KEY,
-      modelName:'meta-llama/Llama-3-70b-chat-hf'
+      model:'meta-llama/Llama-3-70b-chat-hf'
     });
+
 
     const chain = RetrievalQAChain.fromLLM(model, vectorStoreRetriever);
 

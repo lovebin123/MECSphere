@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/*<=============== HEADER ===========>*/
+
+.main{
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: #E9f1EE; 
+    padding: 6rem;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-65 {
+  appearance: none;
+  backface-visibility: hidden;
+  background-color: rgba(54, 102, 233, 0.6); /* Green */
+  border-radius: 10px;
+  border-style: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  height: 50px;
+  letter-spacing: normal;
+  line-height: 1.5;
+  outline: none;
+  overflow: hidden;
+  padding: 14px 30px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.button-65:hover {
+    background-color: #2b2266; /* Darker green */
+    box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, rgba(0, 0, 0, .05) 0 1px 4px;
+    opacity: 1;
+    transform: translateY(-2px); /* Move the button up slightly */
+    transition-duration: .35s;
+  }
+  
+  .button-65:hover:after {
+    opacity: .5;
+  }
+  
+  .button-65:active {
+    background-color: rgba(100,138,242, 0.6); /* Darker green */
+    box-shadow: rgba(0, 0, 0, .1) 0 3px 6px 0, rgba(0, 0, 0, .1) 0 0 10px 0, rgba(0, 0, 0, .1) 0 1px 4px -1px;
+    transform: translateY(0);
+    transition-duration: .35s;
+  }
+  
+  .button-65:active:after {
+    opacity: 1;
+  }
+
+/*<=============== HERO ==============>*/
+
+.hero{
+    margin-top: 1.5rem;
+    display: flex;
+}
+.hero--content{
+    padding-top: 3rem;
+    width: 50%;
+}
+.hero--content h1{
+    font-size: 4rem;
+    color: rgba(64, 59, 223, 0.6); 
+    font-weight: 700;
+}
+.hero--content h1:hover{
+    color: rgba(22, 16, 186, 0.6); 
+    font-weight: 700;
+}
+.hero--content p{
+    padding: 2rem 0;
+    color: rgba(66, 135, 208, 0.6); 
+    font-weight: 600;
+}
+.hero--img{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hero--img img{
+    width: 80%;
+    border-radius: 20px;
+}
+
+.catchphrase{
+    font-style: oblique;
+}
+

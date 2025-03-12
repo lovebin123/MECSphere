@@ -26,31 +26,31 @@ const Tablecomp = () => {
                 </Thead>
                 <Tbody>
                     <Tr>
-                        <Td>Harman</Td>
+                        <Td>Deloitte</Td>
+                        <Td>5</Td>
                         <Td>3</Td>
                         <Td>2</Td>
-                        <Td>1</Td>
+                        <Td>2</Td>
                         <Td>0</Td>
-                        <Td>0</Td>
-                        <Td>6</Td>
+                        <Td>12</Td>
                     </Tr>
                     <Tr>
-                        <Td>Harman</Td>
-                        <Td>3</Td>
-                        <Td>2</Td>
+                        <Td>Air India</Td>
+                        <Td>6</Td>
+                        <Td>4</Td>
                         <Td>1</Td>
                         <Td>0</Td>
                         <Td>0</Td>
-                        <Td>6</Td>
+                        <Td>11</Td>
                     </Tr>
                     <Tr>
-                        <Td>Harman</Td>
+                        <Td>IBM</Td>
+                        <Td>3</Td>
                         <Td>3</Td>
                         <Td>2</Td>
-                        <Td>1</Td>
                         <Td>0</Td>
                         <Td>0</Td>
-                        <Td>6</Td>
+                        <Td>8</Td>
                     </Tr>
                 </Tbody>
             </Table>
